@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyLib", "MyLib\MyLib.vcxproj", "{A3489CCF-5BB3-430B-8BBA-0835C5596CE7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTest", "LibTest\LibTest.vcxproj", "{05E26992-AA9A-4AF1-BEBA-9507FAC73C15}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3489CCF-5BB3-430B-8BBA-0835C5596CE7} = {A3489CCF-5BB3-430B-8BBA-0835C5596CE7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyDll", "MyDll\MyDll.vcxproj", "{0CEB9735-2360-4D67-B73D-A39000C50210}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DllTest", "DllTest\DllTest.vcxproj", "{173ACC42-2493-4842-AA7C-D18D746349EC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0CEB9735-2360-4D67-B73D-A39000C50210} = {0CEB9735-2360-4D67-B73D-A39000C50210}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3489CCF-5BB3-430B-8BBA-0835C5596CE7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A3489CCF-5BB3-430B-8BBA-0835C5596CE7}.Debug|Win32.Build.0 = Debug|Win32
+		{A3489CCF-5BB3-430B-8BBA-0835C5596CE7}.Release|Win32.ActiveCfg = Release|Win32
+		{A3489CCF-5BB3-430B-8BBA-0835C5596CE7}.Release|Win32.Build.0 = Release|Win32
+		{05E26992-AA9A-4AF1-BEBA-9507FAC73C15}.Debug|Win32.ActiveCfg = Debug|Win32
+		{05E26992-AA9A-4AF1-BEBA-9507FAC73C15}.Debug|Win32.Build.0 = Debug|Win32
+		{05E26992-AA9A-4AF1-BEBA-9507FAC73C15}.Release|Win32.ActiveCfg = Release|Win32
+		{05E26992-AA9A-4AF1-BEBA-9507FAC73C15}.Release|Win32.Build.0 = Release|Win32
+		{0CEB9735-2360-4D67-B73D-A39000C50210}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0CEB9735-2360-4D67-B73D-A39000C50210}.Debug|Win32.Build.0 = Debug|Win32
+		{0CEB9735-2360-4D67-B73D-A39000C50210}.Release|Win32.ActiveCfg = Release|Win32
+		{0CEB9735-2360-4D67-B73D-A39000C50210}.Release|Win32.Build.0 = Release|Win32
+		{173ACC42-2493-4842-AA7C-D18D746349EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{173ACC42-2493-4842-AA7C-D18D746349EC}.Debug|Win32.Build.0 = Debug|Win32
+		{173ACC42-2493-4842-AA7C-D18D746349EC}.Release|Win32.ActiveCfg = Release|Win32
+		{173ACC42-2493-4842-AA7C-D18D746349EC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
