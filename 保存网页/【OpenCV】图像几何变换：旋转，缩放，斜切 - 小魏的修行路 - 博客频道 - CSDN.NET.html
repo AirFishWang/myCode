@@ -1,0 +1,1403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/xiaowei_cqu/article/details/7616044 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(1)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(2)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(3)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(4)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(5)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(6)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(7)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(8)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(9)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(10)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(11)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(12)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(13)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(14)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(15)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(16)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(17)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/nick(18)"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/words"></script><script async="" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/query"></script>   
+   
+
+    <script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/hm.js"></script><script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/repoAddr2.js"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#">
+
+    <title>【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="上文提到MyCat的逻辑表支持多种分片规则，表现于schema配置文件中中table标签的rule属性。本节将以MyCat Version 1.6版为基础，介绍几种经常使用的分片规则，这些分片规则都通过rule.xml文件进行定义和配置。">
+    <script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/jquery-version.js"></script>
+    <script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/tracking(1).js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/xiaowei_cqu/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/share.js"></script><link rel="stylesheet" type="text/css" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/job_reco.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/style(1).css"><link type="text/css" rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/style(2).css"><script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/logger.js"></script><script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/get_ads.php" type="text/javascript"></script></head>
+<body><iframe frameborder="0" style="display: none;"></iframe><div id="MathJax_Message" style="display: none;"></div>
+    <!-- 广告位开始 -->
+        <div class="J_adv" data-view="true" data-mod="ad_popu_149" data-mtp="30" data-order="71" data-con="ad_content_1659"><script id="popuLayer_js_q_a" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/popuLayer.js" defer="" async="" type="text/javascript"></script><div id="fulln1pze" style="text-align:center"><a href="http://click.gridsumdissector.com/track.ashx?gsadid=gad_180_s5tidpbc&amp;u=http%3a%2f%2fact.xycdn.com%2factivity%2fxybrand%3fad_source%3dU2%26gsadid%3dgad_180_s5tidpbc%26utm_source%3dCSDN%26utm_channel%3d%25e5%2585%25a8%25e5%25b1%258f%25e5%2585%25a8%25e7%25ab%2599%26utm_campaign%3d%25e5%25ae%25a2%25e6%2588%25b7%25e8%2583%258c%25e4%25b9%25a6%25e4%25b8%2593%25e9%25a2%2598%26utm_content%3d%25e5%2585%25a8%25e5%25b1%258f%25e5%2585%25a8%25e7%25ab%2599%26utm_medium%3d%25e5%2585%25a8%25e5%25b1%258f%25e5%2585%25a8%25e7%25ab%2599" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/201611280958341250.jpg"></a></div><script>  document.getElementById('popuLayer_js_q_a').onload=function(){      window.CSDN.Layer.FullAdv('#fulln1pze',{storageName:'fulln1pze',total:-1});  }</script></div>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/html.js" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/saved_resource.html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/xiaowei_cqu">小魏的修行路</a></h2>
+            <h3>Talk is cheap. Show me the code.</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/xiaowei_cqu?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/xiaowei_cqu?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/xiaowei_cqu/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "xiaowei_cqu";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/xiaowei_cqu";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+<a href="http://geek.csdn.net/news/detail/126445" target="_blank">
+<font color="red">聚焦行业最佳实践，BDTC 2016完整议程公布
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=3287" target="_blank">
+<font color="blue">微信小程序实战项目——点餐系统
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/turingbooks/article/details/53079366" target="_blank">
+<font color="red">程序员11月书讯，评论得书啦 
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://geek.csdn.net/news/detail/110921" target="_blank">
+<font color="blue">Get IT技能知识库，50个领域一键直达
+</font></a>
+
+
+
+
+</div>                        </div>
+                        
+
+
+<!-- 广告位开始 -->
+<div class="J_adv" data-view="true" data-mod="ad_popu_72" data-mtp="40" data-order="40" data-con="ad_content_217" style="width: 1px; height: 1px; position: fixed; right: 10px; bottom: 10px; z-index: 999; background-color: transparent;"><div id="location_parent"></div><script>document.getElementById('location_parent').parentNode.style.height='1px';document.getElementById('location_parent').parentNode.style.width='1px';document.getElementById('location_parent').parentNode.style.position='fixed';document.getElementById('location_parent').parentNode.style.right='10px';document.getElementById('location_parent').parentNode.style.bottom='10px';document.getElementById('location_parent').parentNode.style.zIndex=999;document.getElementById('location_parent').parentNode.style.backgroundColor='transparent';</script><!-- 广告占位容器 --><div id="cpro_u2392861"></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] || {})['u2392861']={at:'3',rsi0:'300',rsi1:'250',pat:'17',tn:'baiduCustNativeAD_xuanfu',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'14',rss2:'#000000',titSU:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2392861'});  </script>  <script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/f.js" type="text/javascript"></script></div>
+<!-- 广告位结束 -->
+
+  
+<link href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/main.js"></script>
+<link rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/MathJax.js"></script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/replace.min.js"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044">
+        【OpenCV】图像几何变换：旋转，缩放，斜切            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/dst" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">dst</a><a href="http://www.csdn.net/tag/float" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">float</a><a href="http://www.csdn.net/tag/matrix" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">matrix</a><a href="http://www.csdn.net/tag/tutorials" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">tutorials</a><a href="http://www.csdn.net/tag/%e5%9b%be%e5%83%8f%e5%a4%84%e7%90%86" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">图像处理</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2012-05-30 14:56</span>
+            <span class="link_view" title="阅读次数">79445人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(62)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;【OpenCV】图像几何变换：旋转，缩放，斜切&#39;,&#39;7616044&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" onclick="javascript:report(7616044,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[{&quot;name&quot;:&quot;OpenCV知识库&quot;,&quot;url&quot;:&quot;http://lib.csdn.net/base/45?source=blogtop&quot;,&quot;logo&quot;:&quot;http://img.knowledge.csdn.net/upload/base/1467269388326_326.jpg&quot;}]}"> <a href="http://lib.csdn.net/base/45?source=blogtop" target="_blank"> <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1467269388326_326.jpg"> <em><b>OpenCV知识库</b></em> </a></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;923660&#39;,&#39;xiaowei_cqu&#39;,&#39;top&#39;,&#39;7616044&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">【图像处理】<em>（43）</em></span>
+                      <img class="arrow-down" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/xiaowei_cqu/article/category/923660" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_923660">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/category.js"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t0">几何变换</a></li><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t1">空间变换</a></li><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t2">OpenCV中的图像变换函数</a></li><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t3">实践图像旋转变换原尺寸</a></li><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t4">实践图像旋转变换保留原图内容放大尺寸</a></li><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t5">实践图像旋转变换保留原图内容放大尺寸-2</a></li><li><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#t6">实践图像放射变换通过三点确定变换矩阵</a></li><ol></ol></ol></div><div style="clear:both"></div><div id="article_content" class="article_content">
+
+<h2><a name="t0"></a>几何变换</h2>
+<p>几何变换可以看成图像中物体（或像素）空间位置改变，或者说是像素的移动。<br>
+</p>
+<p>几何运算需要空间变换和灰度级差值两个步骤的算法，像素通过变换映射到新的坐标位置，新的位置可能是在几个像素之间，即不一定为整数坐标。这时就需要灰度级差值将映射的新坐标匹配到输出像素之间。最简单的插值方法是最近邻插值，就是令输出像素的灰度值等于映射最近的位置像素，该方法可能会产生锯齿。这种方法也叫零阶插值，相应比较复杂的还有一阶和高阶插值。<br>
+</p>
+<p>插值算法感觉只要了解就可以了，图像处理中比较需要理解的还是空间变换。</p>
+<h2><a name="t1"></a>空间变换</h2>
+<p>空间变换对应矩阵的<a href="http://baike.baidu.com/view/954621.htm">仿射变换</a>。一个坐标通过函数变换的新的坐标位置：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338357037_3033.png" alt=""><br>
+</p>
+<p>所以在程序中我们可以使用一个2*3的数组结构来存储变换矩阵：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338357084_2179.png" alt=""><br>
+</p>
+<p>以最简单的平移变换为例，平移（b1,b2）坐标可以表示为：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338357151_4157.png" alt=""><br>
+</p>
+<p>因此，平移变换的变换矩阵及逆矩阵记为：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338357196_5767.png" alt=""><br>
+</p>
+<p>缩放变换：将图像横坐标放大（或缩小）sx倍，纵坐标放大（或缩小）sy倍，变换矩阵及逆矩阵为：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338357283_1562.png" alt=""><br>
+</p>
+<p>选择变换：图像绕原点逆时针旋转a角，其变换矩阵及逆矩阵（顺时针选择）为：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338357351_6885.png" alt=""><br>
+</p>
+<p><br>
+</p>
+<h2><a name="t2"></a>OpenCV中的图像变换函数</h2>
+<p>基本的放射变换函数：</p>
+<p></p>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 512px; top: 1718px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">void</span><span>&nbsp;cvWarpAffine(&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span><span>&nbsp;CvArr*&nbsp;src,</span><span class="comment">//输入图像</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;CvArr*&nbsp;dst,&nbsp;<span class="comment">//输出图像</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span><span>&nbsp;CvMat*&nbsp;map_matrix,&nbsp;&nbsp;&nbsp;</span><span class="comment">//2*3的变换矩阵</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;flags=CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS,&nbsp;&nbsp;&nbsp;</span><span class="comment">//插值方法的组合</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;CvScalar&nbsp;fillval=cvScalarAll(0)&nbsp;&nbsp;&nbsp;<span class="comment">//用来填充边界外的值</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>);&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="cpp" style="display: none;">void cvWarpAffine( 
+    const CvArr* src,//输入图像
+    CvArr* dst, //输出图像
+    const CvMat* map_matrix,   //2*3的变换矩阵
+    int flags=CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS,   //插值方法的组合
+    CvScalar fillval=cvScalarAll(0)   //用来填充边界外的值
+);</pre>另外一个比较类似的函数是cvGetQuadrangleSubPix：
+<p></p>
+<p></p>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 512px; top: 1939px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">void</span><span>&nbsp;cvGetQuadrangleSubPix(&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span><span>&nbsp;CvArr*&nbsp;src,&nbsp;&nbsp;</span><span class="comment">//输入图像&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CvArr*&nbsp;dst,&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;提取的四边形</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span><span>&nbsp;CvMat*&nbsp;map_matrix&nbsp;</span><span class="comment">//2*3的变换矩阵</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>);&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="cpp" style="display: none;">void cvGetQuadrangleSubPix( 
+       const CvArr* src,  //输入图像 
+       CvArr* dst,   // 提取的四边形
+       const CvMat* map_matrix //2*3的变换矩阵
+);</pre>这个函数用以提取输入图像中的四边形，并通过map_matrix变换存储到dst中，与WarpAffine变换意义相同，
+<p></p>
+<p>即对应每个点的变换：</p>
+<p><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338358283_8452.png" alt="" width="555" height="27"><br>
+</p>
+<p>WarpAffine与 GetQuadrangleSubPix 不同的在于cvWarpAffine 要求输入和输出图像具有同样的数据类型，有更大的资源开销（因此对小图像不太合适）而且输出图像的部分可以保留不变。而 cvGetQuadrangleSubPix 可以精确地从8位图像中提取四边形到浮点数缓存区中，具有比较小的系统开销，而且总是全部改变输出图像的内容。<br>
+</p>
+<p><br>
+</p>
+<h2><a name="t3"></a>实践：图像旋转变换（原尺寸）</h2>
+<div>首先用cvWarpAffine实验将图像逆时针旋转degree角度。</div>
+<div><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 512px; top: 2403px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="comment">//逆时针旋转图像degree角度（原尺寸）</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">void</span><span>&nbsp;rotateImage(IplImage*&nbsp;img,&nbsp;IplImage&nbsp;*img_rotate,</span><span class="datatypes">int</span><span>&nbsp;degree)&nbsp;&nbsp;</span></span></li><li class="alt"><span>{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//旋转中心为图像中心</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;CvPoint2D32f&nbsp;center;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;center.x=<span class="datatypes">float</span><span>&nbsp;(img-&gt;width/2.0+0.5);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;center.y=<span class="datatypes">float</span><span>&nbsp;(img-&gt;height/2.0+0.5);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//计算二维旋转的仿射变换矩阵</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">float</span><span>&nbsp;m[6];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;CvMat&nbsp;M&nbsp;=&nbsp;cvMat(&nbsp;2,&nbsp;3,&nbsp;CV_32F,&nbsp;m&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cv2DRotationMatrix(&nbsp;center,&nbsp;degree,1,&nbsp;&amp;M);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//变换图像，并用黑色填充其余值</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cvWarpAffine(img,img_rotate,&nbsp;&amp;M,CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS,cvScalarAll(0)&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="cpp" style="display: none;">//逆时针旋转图像degree角度（原尺寸）
+void rotateImage(IplImage* img, IplImage *img_rotate,int degree)
+{
+	//旋转中心为图像中心
+	CvPoint2D32f center;  
+	center.x=float (img-&gt;width/2.0+0.5);
+	center.y=float (img-&gt;height/2.0+0.5);
+	//计算二维旋转的仿射变换矩阵
+	float m[6];            
+	CvMat M = cvMat( 2, 3, CV_32F, m );
+	cv2DRotationMatrix( center, degree,1, &amp;M);
+	//变换图像，并用黑色填充其余值
+	cvWarpAffine(img,img_rotate, &amp;M,CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS,cvScalarAll(0) );
+}</pre>逆时针旋转30度结果：</div>
+<div><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338358808_1151.png" alt=""></div>
+<div>这里我们将新的图像还保留原来的图像尺寸。这样的效果显然不太好，我们通过计算相应放大图像尺寸。</div>
+<div><br>
+</div>
+<h2><a name="t4"></a>实践：图像旋转变换（保留原图内容，放大尺寸）</h2>
+<div>需要计算新图的尺寸，示意图如下：</div>
+<div><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1352961867_5235.jpg" alt=""><br>
+</div>
+<div>所以新图size为（width*cos(a)+height*sin(a), height*cos(a)+width*sin(a)）</div>
+<div><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 512px; top: 3465px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="comment">//旋转图像内容不变，尺寸相应变大</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>IplImage*&nbsp;rotateImage1(IplImage*&nbsp;img,<span class="datatypes">int</span><span>&nbsp;degree){&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">double</span><span>&nbsp;angle&nbsp;=&nbsp;degree&nbsp;&nbsp;*&nbsp;CV_PI&nbsp;/&nbsp;180.;&nbsp;</span><span class="comment">//&nbsp;弧度&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">double</span><span>&nbsp;a&nbsp;=&nbsp;sin(angle),&nbsp;b&nbsp;=&nbsp;cos(angle);&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;width&nbsp;=&nbsp;img-&gt;width;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;height&nbsp;=&nbsp;img-&gt;height;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;width_rotate=&nbsp;</span><span class="datatypes">int</span><span>(height&nbsp;*&nbsp;fabs(a)&nbsp;+&nbsp;width&nbsp;*&nbsp;fabs(b));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;height_rotate=</span><span class="datatypes">int</span><span>(width&nbsp;*&nbsp;fabs(a)&nbsp;+&nbsp;height&nbsp;*&nbsp;fabs(b));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//旋转数组map</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;[&nbsp;m0&nbsp;&nbsp;m1&nbsp;&nbsp;m2&nbsp;]&nbsp;===&gt;&nbsp;&nbsp;[&nbsp;A11&nbsp;&nbsp;A12&nbsp;&nbsp;&nbsp;b1&nbsp;]</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;[&nbsp;m3&nbsp;&nbsp;m4&nbsp;&nbsp;m5&nbsp;]&nbsp;===&gt;&nbsp;&nbsp;[&nbsp;A21&nbsp;&nbsp;A22&nbsp;&nbsp;&nbsp;b2&nbsp;]</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">float</span><span>&nbsp;map[6];&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;CvMat&nbsp;map_matrix&nbsp;=&nbsp;cvMat(2,&nbsp;3,&nbsp;CV_32F,&nbsp;map);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;旋转中心</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;CvPoint2D32f&nbsp;center&nbsp;=&nbsp;cvPoint2D32f(width&nbsp;/&nbsp;2,&nbsp;height&nbsp;/&nbsp;2);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;cv2DRotationMatrix(center,&nbsp;degree,&nbsp;1.0,&nbsp;&amp;map_matrix);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;map[2]&nbsp;+=&nbsp;(width_rotate&nbsp;-&nbsp;width)&nbsp;/&nbsp;2;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;map[5]&nbsp;+=&nbsp;(height_rotate&nbsp;-&nbsp;height)&nbsp;/&nbsp;2;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;IplImage*&nbsp;img_rotate&nbsp;=&nbsp;cvCreateImage(cvSize(width_rotate,&nbsp;height_rotate),&nbsp;8,&nbsp;3);&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//对图像做仿射变换</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//CV_WARP_FILL_OUTLIERS&nbsp;-&nbsp;填充所有输出图像的象素。</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//如果部分象素落在输入图像的边界外，那么它们的值设定为&nbsp;fillval.</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//CV_WARP_INVERSE_MAP&nbsp;-&nbsp;指定&nbsp;map_matrix&nbsp;是输出图像到输入图像的反变换，</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;cvWarpAffine(&nbsp;img,img_rotate,&nbsp;&amp;map_matrix,&nbsp;CV_INTER_LINEAR&nbsp;|&nbsp;CV_WARP_FILL_OUTLIERS,&nbsp;cvScalarAll(0));&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;img_rotate;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="cpp" style="display: none;">//旋转图像内容不变，尺寸相应变大
+IplImage* rotateImage1(IplImage* img,int degree){
+	double angle = degree  * CV_PI / 180.; // 弧度  
+	double a = sin(angle), b = cos(angle); 
+	int width = img-&gt;width;  
+	int height = img-&gt;height;  
+	int width_rotate= int(height * fabs(a) + width * fabs(b));  
+	int height_rotate=int(width * fabs(a) + height * fabs(b));  
+	//旋转数组map
+	// [ m0  m1  m2 ] ===&gt;  [ A11  A12   b1 ]
+	// [ m3  m4  m5 ] ===&gt;  [ A21  A22   b2 ]
+	float map[6];
+	CvMat map_matrix = cvMat(2, 3, CV_32F, map);  
+	// 旋转中心
+	CvPoint2D32f center = cvPoint2D32f(width / 2, height / 2);  
+	cv2DRotationMatrix(center, degree, 1.0, &amp;map_matrix);  
+	map[2] += (width_rotate - width) / 2;  
+	map[5] += (height_rotate - height) / 2;  
+	IplImage* img_rotate = cvCreateImage(cvSize(width_rotate, height_rotate), 8, 3); 
+	//对图像做仿射变换
+	//CV_WARP_FILL_OUTLIERS - 填充所有输出图像的象素。
+	//如果部分象素落在输入图像的边界外，那么它们的值设定为 fillval.
+	//CV_WARP_INVERSE_MAP - 指定 map_matrix 是输出图像到输入图像的反变换，
+	cvWarpAffine( img,img_rotate, &amp;map_matrix, CV_INTER_LINEAR | CV_WARP_FILL_OUTLIERS, cvScalarAll(0));  
+	return img_rotate;
+}</pre>
+<p><br>
+</p>
+<h2><a name="t5"></a>实践：图像旋转变换（保留原图内容，放大尺寸）-2</h2>
+<div>试一下用cvGetQuadrangleSubPix函数：</div>
+<div><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 512px; top: 4111px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="comment">//旋转图像内容不变，尺寸相应变大</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>IplImage*&nbsp;rotateImage2(IplImage*&nbsp;img,&nbsp;<span class="datatypes">int</span><span>&nbsp;degree)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>{&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">double</span><span>&nbsp;angle&nbsp;=&nbsp;degree&nbsp;&nbsp;*&nbsp;CV_PI&nbsp;/&nbsp;180.;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">double</span><span>&nbsp;a&nbsp;=&nbsp;sin(angle),&nbsp;b&nbsp;=&nbsp;cos(angle);&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;width=img-&gt;width,&nbsp;height=img-&gt;height;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//旋转后的新图尺寸</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;width_rotate=&nbsp;</span><span class="datatypes">int</span><span>(height&nbsp;*&nbsp;fabs(a)&nbsp;+&nbsp;width&nbsp;*&nbsp;fabs(b));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;height_rotate=</span><span class="datatypes">int</span><span>(width&nbsp;*&nbsp;fabs(a)&nbsp;+&nbsp;height&nbsp;*&nbsp;fabs(b));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;IplImage*&nbsp;img_rotate&nbsp;=&nbsp;cvCreateImage(cvSize(width_rotate,&nbsp;height_rotate),&nbsp;img-&gt;depth,&nbsp;img-&gt;nChannels);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cvZero(img_rotate);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//保证原图可以任意角度旋转的最小尺寸</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;tempLength&nbsp;=&nbsp;sqrt((</span><span class="datatypes">double</span><span>)width&nbsp;*&nbsp;width&nbsp;+&nbsp;(</span><span class="datatypes">double</span><span>)height&nbsp;*height)&nbsp;+&nbsp;10;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;tempX&nbsp;=&nbsp;(tempLength&nbsp;+&nbsp;1)&nbsp;/&nbsp;2&nbsp;-&nbsp;width&nbsp;/&nbsp;2;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;tempY&nbsp;=&nbsp;(tempLength&nbsp;+&nbsp;1)&nbsp;/&nbsp;2&nbsp;-&nbsp;height&nbsp;/&nbsp;2;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;IplImage*&nbsp;temp&nbsp;=&nbsp;cvCreateImage(cvSize(tempLength,&nbsp;tempLength),&nbsp;img-&gt;depth,&nbsp;img-&gt;nChannels);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cvZero(temp);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//将原图复制到临时图像tmp中心</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cvSetImageROI(temp,&nbsp;cvRect(tempX,&nbsp;tempY,&nbsp;width,&nbsp;height));&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;cvCopy(img,&nbsp;temp,&nbsp;NULL);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cvResetImageROI(temp);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//旋转数组map</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;[&nbsp;m0&nbsp;&nbsp;m1&nbsp;&nbsp;m2&nbsp;]&nbsp;===&gt;&nbsp;&nbsp;[&nbsp;A11&nbsp;&nbsp;A12&nbsp;&nbsp;&nbsp;b1&nbsp;]</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;[&nbsp;m3&nbsp;&nbsp;m4&nbsp;&nbsp;m5&nbsp;]&nbsp;===&gt;&nbsp;&nbsp;[&nbsp;A21&nbsp;&nbsp;A22&nbsp;&nbsp;&nbsp;b2&nbsp;]</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">float</span><span>&nbsp;m[6];&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;w&nbsp;=&nbsp;temp-&gt;width;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;h&nbsp;=&nbsp;temp-&gt;height;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;m[0]&nbsp;=&nbsp;b;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;m[1]&nbsp;=&nbsp;a;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;m[3]&nbsp;=&nbsp;-m[1];&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;m[4]&nbsp;=&nbsp;m[0];&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;将旋转中心移至图像中间&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;m[2]&nbsp;=&nbsp;w&nbsp;*&nbsp;0.5f;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;m[5]&nbsp;=&nbsp;h&nbsp;*&nbsp;0.5f;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;CvMat&nbsp;M&nbsp;=&nbsp;cvMat(2,&nbsp;3,&nbsp;CV_32F,&nbsp;m);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;cvGetQuadrangleSubPix(temp,&nbsp;img_rotate,&nbsp;&amp;M);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;cvReleaseImage(&amp;temp);&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;img_rotate;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="cpp" style="display: none;">//旋转图像内容不变，尺寸相应变大
+IplImage* rotateImage2(IplImage* img, int degree)  
+{  
+	double angle = degree  * CV_PI / 180.; 
+	double a = sin(angle), b = cos(angle); 
+	int width=img-&gt;width, height=img-&gt;height;
+	//旋转后的新图尺寸
+	int width_rotate= int(height * fabs(a) + width * fabs(b));  
+	int height_rotate=int(width * fabs(a) + height * fabs(b));  
+	IplImage* img_rotate = cvCreateImage(cvSize(width_rotate, height_rotate), img-&gt;depth, img-&gt;nChannels);  
+	cvZero(img_rotate);  
+	//保证原图可以任意角度旋转的最小尺寸
+	int tempLength = sqrt((double)width * width + (double)height *height) + 10;  
+	int tempX = (tempLength + 1) / 2 - width / 2;  
+	int tempY = (tempLength + 1) / 2 - height / 2;  
+	IplImage* temp = cvCreateImage(cvSize(tempLength, tempLength), img-&gt;depth, img-&gt;nChannels);  
+	cvZero(temp);  
+	//将原图复制到临时图像tmp中心
+	cvSetImageROI(temp, cvRect(tempX, tempY, width, height));  
+	cvCopy(img, temp, NULL);  
+	cvResetImageROI(temp);  
+	//旋转数组map
+	// [ m0  m1  m2 ] ===&gt;  [ A11  A12   b1 ]
+	// [ m3  m4  m5 ] ===&gt;  [ A21  A22   b2 ]
+	float m[6];  
+	int w = temp-&gt;width;  
+	int h = temp-&gt;height;  
+	m[0] = b;  
+	m[1] = a;  
+	m[3] = -m[1];  
+	m[4] = m[0];  
+	// 将旋转中心移至图像中间  
+	m[2] = w * 0.5f;  
+	m[5] = h * 0.5f;  
+	CvMat M = cvMat(2, 3, CV_32F, m);  
+	cvGetQuadrangleSubPix(temp, img_rotate, &amp;M);  
+	cvReleaseImage(&amp;temp);  
+	return img_rotate;
+}  </pre><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338359560_5837.png" width="640" height="380" alt=""></div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>
+<h2><a name="t6"></a>实践：图像放射变换（通过三点确定变换矩阵）</h2>
+在OpenCV 2.3的参考手册中《opencv_tutorials》介绍了另一种确定变换矩阵的方法，通过三个点变换的几何关系映射实现变换。</div>
+<div>变换示意图如下：</div>
+<div><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338360448_7693.jpg" alt=""><br>
+</div>
+<div>即通过三个点就可以确定一个变换矩阵。（矩形变换后一定为平行四边形）</div>
+<div>以下是基于OpenCV 2.3的代码（需至少2.0以上版本的支持）</div>
+<div><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 512px; top: 5659px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="datatypes">int</span><span>&nbsp;main(&nbsp;)&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Point2f&nbsp;srcTri[3];&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Point2f&nbsp;dstTri[3];&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Mat&nbsp;rot_mat(&nbsp;2,&nbsp;3,&nbsp;CV_32FC1&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Mat&nbsp;warp_mat(&nbsp;2,&nbsp;3,&nbsp;CV_32FC1&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Mat&nbsp;src,&nbsp;warp_dst,&nbsp;warp_rotate_dst;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//读入图像</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;src&nbsp;=&nbsp;imread(&nbsp;<span class="string">"baboon.jpg"</span><span>,&nbsp;1&nbsp;);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;warp_dst&nbsp;=&nbsp;Mat::zeros(&nbsp;src.rows,&nbsp;src.cols,&nbsp;src.type()&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;用3个点确定A仿射变换</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;srcTri[0]&nbsp;=&nbsp;Point2f(&nbsp;0,0&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;srcTri[1]&nbsp;=&nbsp;Point2f(&nbsp;src.cols&nbsp;-&nbsp;1,&nbsp;0&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;srcTri[2]&nbsp;=&nbsp;Point2f(&nbsp;0,&nbsp;src.rows&nbsp;-&nbsp;1&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;dstTri[0]&nbsp;=&nbsp;Point2f(&nbsp;src.cols*0.0,&nbsp;src.rows*0.33&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;dstTri[1]&nbsp;=&nbsp;Point2f(&nbsp;src.cols*0.85,&nbsp;src.rows*0.25&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;dstTri[2]&nbsp;=&nbsp;Point2f(&nbsp;src.cols*0.15,&nbsp;src.rows*0.7&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;warp_mat&nbsp;=&nbsp;getAffineTransform(&nbsp;srcTri,&nbsp;dstTri&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;warpAffine(&nbsp;src,&nbsp;warp_dst,&nbsp;warp_mat,&nbsp;warp_dst.size()&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">///&nbsp;旋转矩阵</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Point&nbsp;center&nbsp;=&nbsp;Point(&nbsp;warp_dst.cols/2,&nbsp;warp_dst.rows/2&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">double</span><span>&nbsp;angle&nbsp;=&nbsp;-50.0;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">double</span><span>&nbsp;scale&nbsp;=&nbsp;0.6;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;rot_mat&nbsp;=&nbsp;getRotationMatrix2D(&nbsp;center,&nbsp;angle,&nbsp;scale&nbsp;);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;warpAffine(&nbsp;warp_dst,&nbsp;warp_rotate_dst,&nbsp;rot_mat,&nbsp;warp_dst.size()&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">////OpenCV&nbsp;1.0的形式</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//IplImage&nbsp;*&nbsp;img=cvLoadImage("baboon.jpg");</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//IplImage&nbsp;*img_rotate=cvCloneImage(img);</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//CvMat&nbsp;M&nbsp;=warp_mat;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//cvWarpAffine(img,img_rotate,&nbsp;&amp;M,CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS,cvScalarAll(0)&nbsp;);</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//cvShowImage("Wrap2",img_rotate);</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;namedWindow(&nbsp;<span class="string">"Source"</span><span>,&nbsp;CV_WINDOW_AUTOSIZE&nbsp;);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;imshow(&nbsp;<span class="string">"Source"</span><span>,&nbsp;src&nbsp;);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;namedWindow(&nbsp;<span class="string">"Wrap"</span><span>,&nbsp;CV_WINDOW_AUTOSIZE&nbsp;);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;imshow(&nbsp;<span class="string">"Wrap"</span><span>,&nbsp;warp_dst&nbsp;);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;namedWindow(<span class="string">"Wrap+Rotate"</span><span>,&nbsp;CV_WINDOW_AUTOSIZE&nbsp;);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;imshow(&nbsp;<span class="string">"Wrap+Rotate"</span><span>,&nbsp;warp_rotate_dst&nbsp;);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;waitKey(0);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;0;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="cpp" style="display: none;">int main( )
+{
+	Point2f srcTri[3];
+	Point2f dstTri[3];
+	Mat rot_mat( 2, 3, CV_32FC1 );
+	Mat warp_mat( 2, 3, CV_32FC1 );
+	Mat src, warp_dst, warp_rotate_dst;
+	//读入图像
+	src = imread( "baboon.jpg", 1 );
+	warp_dst = Mat::zeros( src.rows, src.cols, src.type() );
+	// 用3个点确定A仿射变换
+	srcTri[0] = Point2f( 0,0 );
+	srcTri[1] = Point2f( src.cols - 1, 0 );
+	srcTri[2] = Point2f( 0, src.rows - 1 );
+	dstTri[0] = Point2f( src.cols*0.0, src.rows*0.33 );
+	dstTri[1] = Point2f( src.cols*0.85, src.rows*0.25 );
+	dstTri[2] = Point2f( src.cols*0.15, src.rows*0.7 );
+	warp_mat = getAffineTransform( srcTri, dstTri );
+	warpAffine( src, warp_dst, warp_mat, warp_dst.size() );
+	/// 旋转矩阵
+	Point center = Point( warp_dst.cols/2, warp_dst.rows/2 );
+	double angle = -50.0;
+	double scale = 0.6;
+	rot_mat = getRotationMatrix2D( center, angle, scale );
+	warpAffine( warp_dst, warp_rotate_dst, rot_mat, warp_dst.size() );
+	////OpenCV 1.0的形式
+	//IplImage * img=cvLoadImage("baboon.jpg");
+	//IplImage *img_rotate=cvCloneImage(img);
+	//CvMat M =warp_mat;
+	//cvWarpAffine(img,img_rotate, &amp;M,CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS,cvScalarAll(0) );
+	//cvShowImage("Wrap2",img_rotate);
+
+	namedWindow( "Source", CV_WINDOW_AUTOSIZE );
+	imshow( "Source", src );
+	namedWindow( "Wrap", CV_WINDOW_AUTOSIZE );
+	imshow( "Wrap", warp_dst );
+	namedWindow("Wrap+Rotate", CV_WINDOW_AUTOSIZE );
+	imshow( "Wrap+Rotate", warp_rotate_dst );
+	waitKey(0);
+	return 0;
+}</pre>变换结果：</div>
+<div><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1338360775_2272.png" alt=""></div>
+<div><br>
+</div>
+<h3>转载请注明出处：<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044">http://blog.csdn.net/xiaowei_cqu/article/details/7616044</a><br>
+实验代码下载：<a href="http://download.csdn.net/detail/xiaowei_cqu/4339856">http://download.csdn.net/detail/xiaowei_cqu/4339856</a></h3>
+<div>写在最后的一点点闲话</div>
+<div>之前一直用的2.1的版本，后来装了2.3，只是听说2.3很强大，但我刚开始学，用的也基础，完全没感觉出不同。直到今天忽然看到了2.3的手册，才发现从2.0开始函数和基本结构都有了很大的改变，而我一直还是用的1.0风格的函数（比如cvMat，cvLoadImage）。我的两个学习工具《Learnning OpenCV》和《OpenCV中文参考手册》都是基于1.0的，这也是我到今天才看到Mat，然后直接被惊艳到了。</div>
+<div>别人总结出来的东西能帮助我们在一开始迅速入门，但要学深，学精，终归还是要自己去努力挖的。</div>
+<div><br>
+</div>
+</div>
+<p><br>
+</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" articleid="7616044">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>72</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>1</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/xiaowei_cqu/article/details/7610665&#39;;">上一篇</span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7610665" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">【OpenCV】图像代数运算：平均值去噪，减去背景</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/xiaowei_cqu/article/details/7670703&#39;;">下一篇</span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7670703" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">【OpenCV】基于Adaboost和Haar-like特征人脸识别</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;923660&#39;,&#39;xiaowei_cqu&#39;,&#39;foot&#39;,&#39;7616044&#39;);">【图像处理】<em>（43）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none" target="_blank">http://blog.csdn.net</a>
+                        <ul class="similar_list fl"><li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/38142993" id="foot_aritcle_38142993undefined6761534624839189" target="_blank" title="【计算机视觉】对象距离的平面显示">【计算机视觉】对象距离的平面显示</a><span>2014-07-26</span><label><i>阅读</i><b>6199</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/26478135" id="foot_aritcle_26478135undefined344764540188758" target="_blank" title="【OpenCV】透视变换 Perspective Transformation（续）">【OpenCV】透视变换 Perspective Transformation（续）</a><span>2014-05-27</span><label><i>阅读</i><b>35083</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/25131473" id="foot_aritcle_25131473undefined5565152438874625" target="_blank" title="【图像处理】Schmid滤波器">【图像处理】Schmid滤波器</a><span>2014-05-07</span><label><i>阅读</i><b>4276</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/19839019" id="foot_aritcle_19839019undefined568734454961485" target="_blank" title="【OpenCV】访问Mat中每个像素的值（新）">【OpenCV】访问Mat中每个像素的值（新）</a><span>2014-02-24</span><label><i>阅读</i><b>59047</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/18002883" id="foot_aritcle_18002883undefined6790629672404633" target="_blank" title="【计算机视觉】步态能量图GEI">【计算机视觉】步态能量图GEI</a><span>2014-01-09</span><label><i>阅读</i><b>5307</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/8987387" id="foot_aritcle_8987387undefined6964282352689499" target="_blank" title="【OpenCV】使用floodfill()实现PhotoShop魔棒功能">【OpenCV】使用floodfill()实现PhotoShop魔棒功能</a><span>2013-05-29</span><label><i>阅读</i><b>10163</b></label></li> </ul>
+
+                        <ul class="similar_list fr"><li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/27692123" id="foot_aritcle_27692123undefined1329517466242831" target="_blank" title="【计算机视觉】SIFT中LoG和DoG比较">【计算机视觉】SIFT中LoG和DoG比较</a><span>2014-06-03</span><label><i>阅读</i><b>13875</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/26471527" id="foot_aritcle_26471527undefined310973375215692" target="_blank" title="【图像处理】透视变换 Perspective Transformation">【图像处理】透视变换 Perspective Transformation</a><span>2014-05-26</span><label><i>阅读</i><b>41671</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/24745945" id="foot_aritcle_24745945undefined45595285618021175" target="_blank" title="【图像处理】Gabor滤波器">【图像处理】Gabor滤波器</a><span>2014-04-30</span><label><i>阅读</i><b>10525</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/18051029" id="foot_aritcle_18051029undefined8510944437240651" target="_blank" title="【图像处理】全分发TV图像去噪">【图像处理】全分发TV图像去噪</a><span>2014-01-20</span><label><i>阅读</i><b>5618</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/xiaowei_cqu/article/details/17928733" id="foot_aritcle_17928733undefined40950674512669005" target="_blank" title="【图像处理】快速计算积分图">【图像处理】快速计算积分图</a><span>2014-01-06</span><label><i>阅读</i><b>17825</b></label></li> </ul>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/923660" class="MoreArticle">更多文章</a></div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('923660', 'xiaowei_cqu','foot','7616044');
+        });
+    </script>
+      
+</div>
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/xiaowei_cqu/svc/GetSuggestContent/7616044",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c">
+        </div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "7616044",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: block;"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/qingzai_/article/details/51095297" title="OpenCV 图像几何变换旋转缩放斜切" strategy="SearchAlgorithm" target="_blank">OpenCV 图像几何变换旋转缩放斜切</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044" title="OpenCV图像几何变换旋转缩放斜切" strategy="SearchAlgorithm" target="_blank">OpenCV图像几何变换旋转缩放斜切</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/KUAILE123/article/details/16840579" title="OpenCV-图像几何变换旋转缩放斜切 " strategy="SearchAlgorithm" target="_blank">OpenCV-图像几何变换旋转缩放斜切 </a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/aa512690069/article/details/18316067" title="OpenCV图像几何变换旋转缩放斜切" strategy="SearchAlgorithm" target="_blank">OpenCV图像几何变换旋转缩放斜切</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/u010141025/article/details/17767943" title="OpenCV图像几何变换旋转缩放斜切" strategy="SearchAlgorithm" target="_blank">OpenCV图像几何变换旋转缩放斜切</a></dd></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = '【OpenCV】图像几何变换：旋转，缩放，斜切' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<div class="J_adv" data-view="true" data-mod="ad_popu_71" data-mtp="36" data-order="339" data-con="ad_content_216" style="width: 728px; height: 90px;"><!-- 广告占位容器 --><div id="cpro_u1607657"></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] ||{})['u1607657']={at:'3',rsi0:'728',rsi1:'90',pat:'6',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0',ptbg:'90',piw:'0',pih:'0',ptp:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u1607657'});  </script>  <script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/c.js" type="text/javascript"></script></div>    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6085094"><dt class="comment_head" floor="37">37楼 <span class="user"><a class="username" href="http://blog.csdn.net/code_caq" target="_blank">chenaq16</a> <span class="ptime">2016-06-16 10:08发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6085094" username="code_caq"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/code_caq" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_code_caq.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问楼主怎么把旋转之后的填充色改成白色？现在的填充色是黑色。谢谢啦~</dd></dl><dl class="comment_item comment_topic" id="comment_item_5952639"><dt class="comment_head" floor="36">36楼 <span class="user"><a class="username" href="http://blog.csdn.net/Darcy0" target="_blank">Darcy0</a> <span class="ptime">2016-03-28 20:14发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5952639" username="Darcy0"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Darcy0" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_darcy0.jpg" width="40" height="40"></a></dd><dd class="comment_body">很棒！</dd></dl><dl class="comment_item comment_topic" id="comment_item_5878939"><dt class="comment_head" floor="35">35楼 <span class="user"><a class="username" href="http://blog.csdn.net/tangmensanshao" target="_blank">Robert233</a> <span class="ptime">2016-02-07 17:13发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5878939" username="tangmensanshao"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/tangmensanshao" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_tangmensanshao.jpg" width="40" height="40"></a></dd><dd class="comment_body">很棒，谢楼主</dd></dl><dl class="comment_item comment_topic" id="comment_item_5635345"><dt class="comment_head" floor="34">34楼 <span class="user"><a class="username" href="http://blog.csdn.net/shantou2008" target="_blank">shantou2008</a> <span class="ptime">2015-11-24 11:11发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5635345" username="shantou2008"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/shantou2008" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_shantou2008.jpg" width="40" height="40"></a></dd><dd class="comment_body">我也来评论下，获取积极分。然后下载。我收藏了。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5339005"><dt class="comment_head" floor="33">33楼 <span class="user"><a class="username" href="http://blog.csdn.net/sunny_xsc1994" target="_blank">若之辰</a> <span class="ptime">2015-08-25 22:03发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5339005" username="sunny_xsc1994"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunny_xsc1994" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_sunny_xsc1994.jpg" width="40" height="40"></a></dd><dd class="comment_body">一开始运行你给的第一个旋转后改变图像尺寸大小的代码，程序会抛出异常，执行不了。<br>后来尝试将IplImage* img_rotate = cvCreateImage(cvSize(width_rotate, height_rotate), 8, 3); <br>改成IplImage* img_rotate = cvCreateImage(cvSize(width_rotate, height_rotate), img-&gt;depth, img-&gt;nChannels); 即将8和3改成img对应的属性，即可成功运行。是不是因为读取的图片的原因？</dd></dl><dl class="comment_item comment_topic" id="comment_item_5338997"><dt class="comment_head" floor="32">32楼 <span class="user"><a class="username" href="http://blog.csdn.net/sunny_xsc1994" target="_blank">若之辰</a> <span class="ptime">2015-08-25 22:02发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5338997" username="sunny_xsc1994"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunny_xsc1994" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_sunny_xsc1994.jpg" width="40" height="40"></a></dd><dd class="comment_body">一开始运行你给的第一个旋转后改变图像尺寸大小的代码，程序会抛出异常，执行不了。<br>后来尝试将IplImage* img_rotate = cvCreateImage(cvSize(width_rotate, height_rotate), 8, 3); <br>改成IplImage* img_rotate = cvCreateImage(cvSize(width_rotate, height_rotate), img-&gt;depth, img-&gt;nChannels); 即将8和3改成img对应的属性，即可成功运行。是不是因为读取图片的原因？</dd></dl><dl class="comment_item comment_topic" id="comment_item_4996511"><dt class="comment_head" floor="31">31楼 <span class="user"><a class="username" href="http://blog.csdn.net/qijunzhao0105" target="_blank">qijunzhao0105</a> <span class="ptime">2015-04-30 17:59发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4996511" username="qijunzhao0105"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qijunzhao0105" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_qijunzhao0105.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，你好。我在看仿射变换代码的时候遇到点问题，还请指定一二。<br>opencv 版本：2.4.6.1<br>在modules/imgproc/src/imgwarp.cpp第3551行的getAffineTransform函数中有代码：<br> int j = i*12;<br>        int k = i*12+6;<br>        a[j] = a[k+3] = src[i].x;<br>        a[j+1] = a[k+4] = src[i].y;<br>        a[j+2] = a[k+5] = 1;<br>        a[j+3] = a[j+4] = a[j+5] = 0;<br>        a[k] = a[k+1] = a[k+2] = 0;<br>这里的代码生成矩阵跟函数上面所写注释的矩阵不同，矩阵行被交换了。<br>比如3个点（X1，Y1）(X2，Y2)(X3，Y3)<br>注释给出的矩阵是<br>x0 y0  1   0  0  0<br>x1 y1   1  0  0  0<br>x2 y2   1  0  0  0<br>0  0     0 x0  y0 1<br>0  0    0  x1  y1 1<br>0  0    0  x2  y2 1<br>但是这里代码经过打印生成的矩阵是<br>x0 y0  1   0  0  0<br>0  0     0 x0  y0 1<br>x1 y1   1  0  0  0<br>0  0    0  x1  y1 1<br>x2 y2   1  0  0  0<br>0  0    0  x2  y2 1<br>2者不同啊，有人说：矩阵的行列可以交换， 但是我分别用上面矩阵仿射变换测试一张图片，得到的结果是不同的。<br>请问这是代码生成的矩阵为什么跟注释矩阵不同那？</dd></dl><dl class="comment_item comment_topic" id="comment_item_4866793"><dt class="comment_head" floor="30">30楼 <span class="user"><a class="username" href="http://blog.csdn.net/donrivers" target="_blank">donrivers</a> <span class="ptime">2015-03-21 19:28发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4866793" username="donrivers"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/donrivers" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_donrivers.jpg" width="40" height="40"></a></dd><dd class="comment_body">赞，很适合新手</dd></dl><dl class="comment_item comment_topic" id="comment_item_4809367"><dt class="comment_head" floor="29">29楼 <span class="user"><a class="username" href="http://blog.csdn.net/abcd19892012" target="_blank">abcd19892012</a> <span class="ptime">2015-02-27 10:44发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4809367" username="abcd19892012"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/abcd19892012" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_abcd19892012.jpg" width="40" height="40"></a></dd><dd class="comment_body">写的很好，解决了我遇到的问题，感谢分享。</dd></dl><dl class="comment_item comment_topic" id="comment_item_4576897"><dt class="comment_head" floor="28">28楼 <span class="user"><a class="username" href="http://blog.csdn.net/j56754gefge" target="_blank">yuxianguo_chn</a> <span class="ptime">2014-12-02 10:56发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4576897" username="j56754gefge"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/j56754gefge" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_j56754gefge.jpg" width="40" height="40"></a></dd><dd class="comment_body">写得很好，赞一个！</dd></dl><dl class="comment_item comment_topic" id="comment_item_4540445"><dt class="comment_head" floor="27">27楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013701860" target="_blank">luchangli1993</a> <span class="ptime">2014-11-23 15:09发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4540445" username="u013701860"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013701860" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_u013701860.jpg" width="40" height="40"></a></dd><dd class="comment_body">内容写的很好，就是错别字很多，</dd></dl><dl class="comment_item comment_topic" id="comment_item_4244195"><dt class="comment_head" floor="26">26楼 <span class="user"><a class="username" href="http://blog.csdn.net/u010141025" target="_blank">欢乐的工科小硕</a> <span class="ptime">2014-09-03 09:37发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4244195" username="u010141025"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u010141025" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_u010141025.jpg" width="40" height="40"></a></dd><dd class="comment_body">不能更赞 谢谢分享</dd></dl><dl class="comment_item comment_topic" id="comment_item_3972155"><dt class="comment_head" floor="25">25楼 <span class="user"><a class="username" href="http://blog.csdn.net/u010581990" target="_blank">I_Believe_You</a> <span class="ptime">2014-06-21 11:31发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3972155" username="u010581990"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u010581990" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_u010581990.jpg" width="40" height="40"></a></dd><dd class="comment_body">cvGetQuadrangleSubPix(temp, img_rotate, &amp;M);这个函数怎么用啊，没看懂。再就是int tempLength = sqrt((double)width * width + (double)height *height) + 10;    <br>    int tempX = (tempLength + 1) / 2 - width / 2;    <br>    int tempY = (tempLength + 1) / 2 - height / 2;    <br>    IplImage* temp = cvCreateImage(cvSize(tempLength, tempLength), img-&gt;depth, img-&gt;nChannels);    <br>    cvZero(temp);    <br>    //将原图复制到临时图像tmp中心  <br>    cvSetImageROI(temp, cvRect(tempX, tempY, width, height));    <br>    cvCopy(img, temp, NULL);    <br>    cvResetImageROI(temp);    <br>    //旋转数组map  <br>    // [ m0  m1  m2 ] ===&gt;  [ A11  A12   b1 ]  <br>    // [ m3  m4  m5 ] ===&gt;  [ A21  A22   b2 ]  <br>    float m[6];    <br>    int w = temp-&gt;width;    <br>    int h = temp-&gt;height;    <br>    m[0] = b;    <br>    m[1] = a;    <br>    m[3] = -m[1];    <br>    m[4] = m[0];    <br>    // 将旋转中心移至图像中间    <br>    m[2] = w * 0.5f;    <br>    m[5] = h * 0.5f;    <br>    CvMat M = cvMat(2, 3, CV_32F, m); 这段不明白，给解释下吧，谢谢啦！</dd></dl><dl class="comment_item comment_topic" id="comment_item_3841565"><dt class="comment_head" floor="24">24楼 <span class="user"><a class="username" href="http://blog.csdn.net/gygy19990" target="_blank">gygy19990</a> <span class="ptime">2014-05-15 10:57发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3841565" username="gygy19990"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/gygy19990" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_gygy19990.jpg" width="40" height="40"></a></dd><dd class="comment_body">总结很精华，顶起！</dd></dl><dl class="comment_item comment_topic" id="comment_item_3198741"><dt class="comment_head" floor="23">23楼 <span class="user"><a class="username" href="http://blog.csdn.net/pangaotata" target="_blank">pangaotata</a> <span class="ptime">2013-11-26 13:51发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3198741" username="pangaotata"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/pangaotata" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_pangaotata.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问在仿射变换中源图像和目标图像中心位置一开始具有怎样的关系呢</dd></dl><dl class="comment_item comment_topic" id="comment_item_3198731"><dt class="comment_head" floor="22">22楼 <span class="user"><a class="username" href="http://blog.csdn.net/pangaotata" target="_blank">pangaotata</a> <span class="ptime">2013-11-26 13:48发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3198731" username="pangaotata"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/pangaotata" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_pangaotata.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好，请问在你的（保留源图像内容，放大尺寸）板块中提到的map[2] += (width_rotate - width) / 2;   <br>    map[5] += (height_rotate - height) / 2;这个怎么确定的  我想了很久没弄明白  希望得到解答  谢谢啦</dd><dl class="comment_item comment_reply" id="comment_item_3762353"><dt class="comment_head" floor="22">Re: <span class="user"><a class="username" href="http://blog.csdn.net/u012913847" target="_blank">阿坤cool</a> <span class="ptime">2014-04-22 11:43发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3762353" username="u012913847"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012913847" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_u012913847.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复pangaotata：这个我刚开始也没看明白，其实就是对图像进行了平移。map（2）就是第一行第三列的元素，对应于宽度的平移，map（5）就是第二行第三列的元素，对应于高度的平移。只需平移一半的尺寸就好了</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2704427"><dt class="comment_head" floor="21">21楼 <span class="user"><a class="username" href="http://blog.csdn.net/zhangtaolong" target="_blank">zhangtaolong</a> <span class="ptime">2013-07-02 18:06发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2704427" username="zhangtaolong"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zhangtaolong" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_zhangtaolong.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好，问个问题：<br>函数 cv2DRotationMatrix 计算矩阵:<br>[  α  β  |  (1-α)*center.x - β*center.y ]<br>[ -β  α  |  β*center.x + (1-α)*center.y ]<br>α=cos(angle), β=sin(angle)<br>的第三列是什么意思？<br>你上面的对应的变换矩阵M第三列为0。<br>在你的（保留源图像内容，放大尺寸）板块，第三列重新赋值又是什么意思？<br><br>本人菜鸟一个 ，望详解，谢谢！</dd><dl class="comment_item comment_reply" id="comment_item_3460895"><dt class="comment_head" floor="21">Re: <span class="user"><a class="username" href="http://blog.csdn.net/gzlyb" target="_blank">贵子潘</a> <span class="ptime">2014-02-06 03:50发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3460895" username="gzlyb"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/gzlyb" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_gzlyb.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复zhangtaolong：这是我的理解，不当之处，还请指正：<br>1、第三列是X轴，Y轴平移值，即原图在（center.x，center.y)点旋转后再平移，就得到目标图坐标系的各点坐标。其实就是先通过一次平移变换转换原坐标系统到以参考点（center.x，center.y)为原点的坐标系统，在新得到的坐标系统中通过旋转变换得到点的坐标，然后再经过一次恢复平移的变换来把当前新系统中的坐标转换到旧系统中的坐标<br>2、变换矩阵M第三列为0是以原点旋转的，而不是以（center.x，center.y）来旋转<br>3、第三列重新赋值又是什么意思？不是从新赋值，而是把旋转变换后目标图不可见的一部分值在平移了一下</dd></dl><dl class="comment_item comment_reply" id="comment_item_3401643"><dt class="comment_head" floor="21">Re: <span class="user"><a class="username" href="http://blog.csdn.net/jia_zhengshen" target="_blank">jia_zhengshen</a> <span class="ptime">2014-01-14 14:45发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3401643" username="jia_zhengshen"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/jia_zhengshen" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_jia_zhengshen.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复zhangtaolong：我也不明白，还请楼主指教啊。我认为第三列是中心移动的距离，但是如果是斜切的话，这第三列该如何计算呢？</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2652295"><dt class="comment_head" floor="20">20楼 <span class="user"><a class="username" href="http://blog.csdn.net/masikkk" target="_blank">masikkk</a> <span class="ptime">2013-06-03 22:46发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2652295" username="masikkk"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/masikkk" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_masikkk.jpg" width="40" height="40"></a></dd><dd class="comment_body">学习中，受用</dd></dl><dl class="comment_item comment_topic" id="comment_item_2638068"><dt class="comment_head" floor="19">19楼 <span class="user"><a class="username" href="http://blog.csdn.net/csm_qz" target="_blank">Rander.C</a> <span class="ptime">2013-05-22 15:58发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2638068" username="csm_qz"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/csm_qz" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_csm_qz.jpg" width="40" height="40"></a></dd><dd class="comment_body">博主,我分享了...</dd></dl><dl class="comment_item comment_topic" id="comment_item_2598831"><dt class="comment_head" floor="18">18楼 <span class="user"><a class="username" href="http://blog.csdn.net/wdmzslh" target="_blank">约翰一世</a> <span class="ptime">2013-04-18 20:10发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2598831" username="wdmzslh"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wdmzslh" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_wdmzslh.jpg" width="40" height="40"></a></dd><dd class="comment_body">感谢LZ，学习了！<br>另外自己尝试一下，感觉从矩阵变换的角度出发，更易理解和计算：坐标都用[x,y,1]T的齐次形式表示，所有变换（旋转、缩放、错切、平移）都用3*3的简单矩阵表示，因而图像的总体变换矩阵可由一系列矩阵相乘得到。如：图像绕中心旋转的变换矩阵=(width/2,height/2)的平移矩阵*绕原点旋转矩阵*(-width/2,-height/2)的平移矩阵。<br>得到总体变换矩阵后，前两行即为LZ文中所提的2*3矩阵M，调用函数cvWarpAffine即可。</dd></dl><dl class="comment_item comment_topic" id="comment_item_2594673"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/w289464106" target="_blank">w289464106</a> <span class="ptime">2013-04-16 08:51发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2594673" username="w289464106"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/w289464106" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_w289464106.jpg" width="40" height="40"></a></dd><dd class="comment_body">求xiaowei美女的QQ ~~~~</dd></dl><dl class="comment_item comment_topic" id="comment_item_2591017"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/linmiao01" target="_blank">linmiao01</a> <span class="ptime">2013-04-12 16:31发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2591017" username="linmiao01"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/linmiao01" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_linmiao01.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好！请问，对于用imread()函数载入的图像怎么旋转呢，这是Mat矩阵类型的。我用的Opencv2.4.0</dd><dl class="comment_item comment_reply" id="comment_item_2591082"><dt class="comment_head" floor="16">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2013-04-12 16:51发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2591082" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复linmiao01：上面写了的</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2566146"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/oJiYan1" target="_blank">oJiYan1</a> <span class="ptime">2013-03-25 15:24发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2566146" username="oJiYan1"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oJiYan1" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_ojiyan1.jpg" width="40" height="40"></a></dd><dd class="comment_body">bucuo !!!</dd></dl><dl class="comment_item comment_topic" id="comment_item_2526762"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/cdsnlilei" target="_blank">cdsnlilei</a> <span class="ptime">2013-02-05 15:16发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2526762" username="cdsnlilei"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cdsnlilei" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_cdsnlilei.jpg" width="40" height="40"></a></dd><dd class="comment_body">妹妹不错，娶了！</dd></dl><dl class="comment_item comment_topic" id="comment_item_2498106"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/yicongcong1" target="_blank">伊扬惇措</a> <span class="ptime">2013-01-09 16:27发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2498106" username="yicongcong1"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yicongcong1" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_yicongcong1.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，下载了你的程序看了一下，有个地方需要改一下，在函数rotateAndZoom2()中，改为map[2] =map[2]*factor+0.25*width;  map[5] =map[5]*factor+0.25*height;能够用cvWarpAffine（）实现居于图像中央的旋转缩放功能。顺便问一下：angle = degree  * CV_PI / 180.;这个180后面有个小数点，什么意思？发现完全可以去了，能正常运行。</dd><dl class="comment_item comment_reply" id="comment_item_2498878"><dt class="comment_head" floor="13">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2013-01-10 09:57发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2498878" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复yicongcong1：谢谢~<br>.表示浮点数，用整数会对结果截余</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2468389"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/j1b2m3" target="_blank">j1b2m3</a> <span class="ptime">2012-12-14 09:14发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2468389" username="j1b2m3"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/j1b2m3" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_j1b2m3.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，你好，做过图像的平移了没啊，平移后图像有部分就会出现这种情况，有部分就没有了，本来是白底的图像，整个图像的平移后，有部分就变黑的，据说透视变换可以解决，不知楼主做过没有，求指教</dd><dl class="comment_item comment_reply" id="comment_item_2468477"><dt class="comment_head" floor="12">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-12-14 10:06发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2468477" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复j1b2m3：没</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2464434"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/cansear" target="_blank">cansear</a> <span class="ptime">2012-12-11 14:41发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2464434" username="cansear"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cansear" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_cansear.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，我按照你的图像旋转代码实践1改成opencv2.4.2的接口，旋转后原图像还是被切了哇</dd><dl class="comment_item comment_reply" id="comment_item_2465243"><dt class="comment_head" floor="11">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-12-12 00:37发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2465243" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复cansear：什么被切？</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2433574"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/Orefa" target="_blank">Orefa</a> <span class="ptime">2012-11-15 13:11发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2433574" username="Orefa"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Orefa" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_orefa.jpg" width="40" height="40"></a></dd><dd class="comment_body">博主，你的那个  实践：图像旋转变换（保留原图内容，放大尺寸） 下面的图中的 两个α不相等的，<br>还有一个就是 图下面  的 所以新图size为（width*cos(a)+height+sin(a), height*cos(a)+width*sin(a)）也是错的，把* 写成+ 了。。。（width*cos(a)+height*sin(a), height*cos(a)+width*sin(a)）</dd><dl class="comment_item comment_reply" id="comment_item_2433696"><dt class="comment_head" floor="10">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-11-15 14:41发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2433696" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复Orefa：已经改了，多谢~</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2428152"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/kidd3166" target="_blank">kidd3166</a> <span class="ptime">2012-11-09 19:50发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2428152" username="kidd3166"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/kidd3166" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_kidd3166.jpg" width="40" height="40"></a></dd><dd class="comment_body">做缩放或者仿射变换后图片会出现锯齿，你有发现吗</dd><dl class="comment_item comment_reply" id="comment_item_2428172"><dt class="comment_head" floor="9">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-11-09 20:38发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2428172" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复kidd3166：仿射会的，因为离散的点表示斜线会有锯齿，缩放没有吧</dd><dl class="comment_item comment_reply" id="comment_item_2430298"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/kidd3166" target="_blank">kidd3166</a> <span class="ptime">2012-11-12 18:05发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2430298" username="kidd3166"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/kidd3166" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_kidd3166.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复xiaowei_cqu：那你是先缩小再做旋转？<br>还有什么好的方法？<br>我发现这样做效率比较低</dd></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2421655"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/redball2" target="_blank">redball22</a> <span class="ptime">2012-11-03 22:44发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2421655" username="redball2"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/redball2" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_redball2.jpg" width="40" height="40"></a></dd><dd class="comment_body">xiaowei姐，如果想把旋转后产生的黑色区域用一种颜色填充，改怎么办？新手菜鸟求教</dd><dl class="comment_item comment_reply" id="comment_item_2421689"><dt class="comment_head" floor="8">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-11-04 00:26发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2421689" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复redball2：cvWarpAffine()最后一个参数是填充像素颜色，你读读opencv接口文档</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2413597"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/mobery9" target="_blank">mobery9</a> <span class="ptime">2012-10-26 18:13发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2413597" username="mobery9"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/mobery9" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_mobery9.jpg" width="40" height="40"></a></dd><dd class="comment_body">关于此段的图像旋转，我按照旋转矩阵的方法做了实验。<br>按照我的需求，我做了一个可以连续旋转的MFC程序。结果发现多次连续旋转同一图像后图像会有明显的模糊。<br>应该如何解决呢？</dd><dl class="comment_item comment_reply" id="comment_item_2415108"><dt class="comment_head" floor="7">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-10-28 22:09发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2415108" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复mobery9：不连续旋转，而是每次都旋转初始图片</dd><dl class="comment_item comment_reply" id="comment_item_2417724"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/mobery9" target="_blank">mobery9</a> <span class="ptime">2012-10-31 10:06发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2417724" username="mobery9"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/mobery9" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_mobery9.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复xiaowei_cqu：说的也是。<br>好简单的问题，见笑了。呵呵。</dd></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2403124"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/icecream0712" target="_blank">icecream0712</a> <span class="ptime">2012-10-17 08:15发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2403124" username="icecream0712"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/icecream0712" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_icecream0712.jpg" width="40" height="40"></a></dd><dd class="comment_body">那。。。是不是只有研究生才可以学图像处理啊，我是个本科生，听说只有从事图像的研究生才能找到工作？ 是这样吗？</dd><dl class="comment_item comment_reply" id="comment_item_2403145"><dt class="comment_head" floor="6">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-10-17 08:48发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2403145" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复icecream0712：这个也不一定吧，学图像的研究生毕业也经常不找图像开发的工作，更多还是求职软工；本科主要还是打基础，自己有兴趣可以在一个方面深入一点</dd><dl class="comment_item comment_reply" id="comment_item_2414054"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/wutongthucs" target="_blank">hahaha</a> <span class="ptime">2012-10-27 13:32发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2414054" username="wutongthucs"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wutongthucs" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_wutongthucs.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复xiaowei_cqu：我最近就在招图像识别相关的研究人员，感觉很难招。这块研究和工程都做得很好的人不是很多。</dd></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2402733"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/icecream0712" target="_blank">icecream0712</a> <span class="ptime">2012-10-16 17:22发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2402733" username="icecream0712"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/icecream0712" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_icecream0712.jpg" width="40" height="40"></a></dd><dd class="comment_body">xiao小魏姐姐啊，小弟我也想搞图像，可是我迷茫了T_T能不能与你交流交流</dd><dl class="comment_item comment_reply" id="comment_item_2402871"><dt class="comment_head" floor="5">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-10-16 20:18发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2402871" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复icecream0712：姐也是刚学。。。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2355653"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/jiehanwang" target="_blank">jiehanwang</a> <span class="ptime">2012-08-29 13:30发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2355653" username="jiehanwang"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/jiehanwang" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_jiehanwang.jpg" width="40" height="40"></a></dd><dd class="comment_body">那楼主，已知两幅已经变换后的图，已知他们的几个对应点。能不能求出变换矩阵呢？比如三个点就可以确定六个方程，平面上的变换矩阵也就六个未知数，理论上是可以求解的。求教~</dd><dl class="comment_item comment_reply" id="comment_item_2402870"><dt class="comment_head" floor="4">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-10-16 20:17发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2402870" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复jiehanwang：应该可以吧，矩阵变换AE=B。变换矩阵E=BA-1（就是等式两边都乘以A的逆矩阵），当然前提得是A可逆。。。<br>我记得大致是这样的，线性代数的内容，可以查查书</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2257498"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/henreash" target="_blank">henreash</a> <span class="ptime">2012-06-17 17:05发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2257498" username="henreash"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/henreash" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_henreash.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主头像照片真漂亮,我也在研究OpenCVS.多交流.</dd><dl class="comment_item comment_reply" id="comment_item_2258948"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-06-18 23:58发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2258948" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复henreash：谢谢关注，有机会还要多向你请教~</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2255325"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/wudiyunduo" target="_blank">wudiyunduo</a> <span class="ptime">2012-06-14 22:15发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2255325" username="wudiyunduo"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wudiyunduo" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_wudiyunduo.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主真的好厉害啊~！！<br>刚接触opencv ~开了vision system的课程。。所以要求写一个关于geometric image transformation的 projcet..<br>楼主可不可以把这篇的code代码 发给我啊？<br>我刚注册 的 也没有积分去下载 T T</dd><dl class="comment_item comment_reply" id="comment_item_2258949"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-06-18 23:59发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2258949" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复wudiyunduo：发了~CSDN注册好像是有送积分的，下了东西多评论一下还会返</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2238254"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/cjst107" target="_blank">cjst</a> <span class="ptime">2012-05-30 21:48发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2238254" username="cjst107"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cjst107" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_cjst107.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主写的很好。顶一个！</dd><dl class="comment_item comment_reply" id="comment_item_2238260"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xiaowei_cqu" target="_blank">xiaowei_cqu</a> <span class="ptime">2012-05-30 21:51发表</span>  <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2238260" username="xiaowei_cqu"> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaowei_cqu" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/3_xiaowei_cqu.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复cjst107：谢谢</dd></dl></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fxiaowei_cqu%2Farticle%2Fdetails%2F7616044">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '7616044';
+    var commentscount = 62;
+    var islock = false
+</script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="">
+
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone" target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace" target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+
+</div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/xiaowei_cqu/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/async_new.js"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/xiaowei_cqu" target="_blank">
+    <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/1_xiaowei_cqu.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/xiaowei_cqu" class="user_name" target="_blank">xiaowei_cqu</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=xiaowei_cqu&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+            <div class="ico_expert" title="CSDN认证专家"></div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>2396499次</span></li>
+    <li>积分：<span>0</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/blog1.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：0 </div>
+        </span>  </li>
+    <li>排名：<span>第229名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>141篇</span></li>
+    <li>转载：<span>0篇</span></li>
+    <li>译文：<span>1篇</span></li>
+    <li>评论：<span>2186条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/imageprocessing.html" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/20151123175852192" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/imageprocessing.html" target="_blank">图像处理</a>
+    <p>文章：20篇</p>
+    <span>阅读：218571</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/patternrecognition.html" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/20151123175433224" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/patternrecognition.html" target="_blank">模式识别</a>
+    <p>文章：14篇</p>
+    <span>阅读：261292</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/algorithmnotes.html" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/20151123175336458" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/algorithmnotes.html" target="_blank">算法设计与分析</a>
+    <p>文章：19篇</p>
+    <span>阅读：232845</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/opencvinpractice.html" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/20151123175115192" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/opencvinpractice.html" target="_blank">OpenCV学习与实践</a>
+    <p>文章：30篇</p>
+    <span>阅读：1040104</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div>
+
+<div id="custom_column_22402725" class="panel">
+<ul class="panel_head"><span>系列索引</span></ul>
+<ul class="panel_body">
+<li sizcache="0" sizset="40"><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7747205">【我的本科】</a> (61) 
+</li><li sizcache="0" sizset="41"><a href="http://blog.csdn.net/xiaowei_cqu/article/details/8009066">【我在读研】</a> (11)
+</li><li sizcache="0" sizset="39"><a href="http://blog.csdn.net/xiaowei_cqu/article/details/8704139">【项目汇总】</a> (18) 
+</li>
+</ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/923660" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【图像处理】</a><span>(44)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/1845851" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【机器视觉】</a><span>(38)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/1280539" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【算法分析】</a><span>(34)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/1858939" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【数据结构】</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/944332" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【编程语言】</a><span>(41)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/1233929" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【工程项目】</a><span>(29)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/1436166" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【模式识别】</a><span>(16)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/944334" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【移动开发】</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xiaowei_cqu/article/category/923663" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">【文艺青年】</a><span>(10)</span>
+                </li>
+</ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script>
+
+<div id="custom_column_20728518" class="panel">
+<ul class="panel_head"><span>博主简介</span></ul>
+<ul class="panel_body">
+<font color="blue">CS小硕一枚，兴趣领域：计算机视觉、媒体分析、图像处理；认知心理学，生理心理学。<br>
+喜欢C++、Matlab、OpenCV、Qt、UML、VS、XMind等各种优秀的、提高码农生产力的工具。<br></font>
+<font color="green">
+<br>
+<center><strong>爱逛豆瓣</strong></center>
+<center><script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/saved_resource"></script><div style=""><table cellspacing="0" cellpadding="4" style="&gt;&lt;tr align=" center"=""><tbody><tr><td style=""><a href="http://movie.douban.com/subject/6952149/" title="Breaking Bad 
+
+绝命毒师  / 超越罪恶 第五季" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/p1579021082.jpg" border="0"></a></td><td style=""><a href="http://movie.douban.com/subject/6866928/" title="進撃の巨人 ATTACK ON TITAN
+
+进击的巨人真人版：前篇 / Shingeki no kyojin: Attack on Titan" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/p2239093805.jpg" border="0"></a></td></tr><tr><td align="center" colspan="2"><a href="http://www.douban.com/" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/atdouban.gif" border="0"></a></td></tr></tbody></table></div></center>
+<br>
+<center><font color="blue"><strong>我的邮箱</strong><br>weilan.cqu#gmail.com</font></center></font>
+</ul>
+</div><div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044" title="【OpenCV】图像几何变换：旋转，缩放，斜切">【OpenCV】图像几何变换：旋转，缩放，斜切</a><span>(79401)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7829481" title="【OpenCV】边缘检测：Sobel、拉普拉斯算子">【OpenCV】边缘检测：Sobel、拉普拉斯算子</a><span>(75515)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7771760" title="【OpenCV】访问Mat图像中每个像素的值">【OpenCV】访问Mat图像中每个像素的值</a><span>(73932)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/8069548" title="【OpenCV】SIFT原理与源码分析">【OpenCV】SIFT原理与源码分析</a><span>(64122)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7557063" title="【OpenCV】访问图像中每个像素的值">【OpenCV】访问图像中每个像素的值</a><span>(63419)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/19839019" title="【OpenCV】访问Mat中每个像素的值（新）">【OpenCV】访问Mat中每个像素的值（新）</a><span>(59047)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7600666" title="【OpenCV】数字图像灰度直方图">【OpenCV】数字图像灰度直方图</a><span>(56522)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7606607" title="【OpenCV】直方图应用：直方图均衡化，直方图匹配，对比直方图">【OpenCV】直方图应用：直方图均衡化，直方图匹配，对比直方图</a><span>(51222)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/8067881" title="【OpenCV】SIFT原理与源码分析：DoG尺度空间构造">【OpenCV】SIFT原理与源码分析：DoG尺度空间构造</a><span>(47785)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7805206" title="【OpenCV】角点检测：Harris角点及Shi-Tomasi角点检测">【OpenCV】角点检测：Harris角点及Shi-Tomasi角点检测</a><span>(44981)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7747205" title="【大学生活】在软件学院的那些课">【大学生活】在软件学院的那些课</a><span>(128)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/8067881" title="【OpenCV】SIFT原理与源码分析：DoG尺度空间构造">【OpenCV】SIFT原理与源码分析：DoG尺度空间构造</a><span>(82)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7747650" title="【面向对象】小游戏“终结者”程序的设计与实现">【面向对象】小游戏“终结者”程序的设计与实现</a><span>(82)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044" title="【OpenCV】图像几何变换：旋转，缩放，斜切">【OpenCV】图像几何变换：旋转，缩放，斜切</a><span>(62)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7557063" title="【OpenCV】访问图像中每个像素的值">【OpenCV】访问图像中每个像素的值</a><span>(55)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/8470376" title="【3D】迭代最近点算法 Iterative Closest Points">【3D】迭代最近点算法 Iterative Closest Points</a><span>(54)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7515077" title="【Matlab】数据降维工具箱drtoolbox">【Matlab】数据降维工具箱drtoolbox</a><span>(54)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/8034195" title="【博客分享】优秀的有趣的博客">【博客分享】优秀的有趣的博客</a><span>(51)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7748260" title="【算法分析】查找算法：二分查找、顺序查找">【算法分析】查找算法：二分查找、顺序查找</a><span>(50)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xiaowei_cqu/article/details/7600666" title="【OpenCV】数字图像灰度直方图">【OpenCV】数字图像灰度直方图</a><span>(49)</span>
+</li>
+</ul>
+</div>
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/48296749#comments">【Google内推】2016校园招聘</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Yong_Qi2015" class="user_name">齐小凡</a>:
+受益匪浅啊，谢谢你
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/19839019#comments">【OpenCV】访问Mat中每个像素的值（新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/weixin_36742146" class="user_name">weixin_36742146</a>:
+太强大了，我要关注大神姐姐
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/8272367#comments">【Python】Matplotlib绘图库初探</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/ifruoxi" class="user_name">ifruoxi</a>:
+博主，我可否转载？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7515077#comments">【Matlab】数据降维工具箱drtoolbox</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zhoupeng0722" class="user_name">zhoupeng0722</a>:
+楼主可以发一份doc给我吗 zp_forstudy@126.com  谢谢啦
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7829481#comments">【OpenCV】边缘检测：Sobel、拉普拉斯算子</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u012784207" class="user_name">Chrysante</a>:
+我放到PS里看了一下，最后两种方法得到的结果是一样的啊。。。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7829481#comments">【Google内推】2016校园招聘</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u010807846" class="user_name">司令郭</a>:
+@danju1639:私信我就好了，多多交流
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/8275353#comments">【C++】输出流cout方法</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/ziwuningxinag" class="user_name">ziwuningxinag</a>:
+您好，想问一下您用的什么软件我用的VS,编译的时候写了include 但是 cout显示是未定义的标...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/8275353#comments">【Google内推】2016校园招聘</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/danju1639" class="user_name">danju1639</a>:
+@u010807846:可以交流一下吗  我也做图像  嘻嘻
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7747205#comments">【大学生活】在软件学院的那些课</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u014297722" class="user_name">cuixuange</a>:
+copy过直系学姐好多作业......到了现在还是能拿优.......(逃
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xiaowei_cqu/article/details/35993729#comments">【模式识别】SVM核函数</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u014297722" class="user_name">cuixuange</a>:
+copy过学姐好多作业......还是能拿优.......(逃
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <div class="J_adv" data-view="true" data-mod="ad_popu_190" data-mtp="36" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 200px;"><!-- 广告占位容器 --><div id="cpro_u2734128"></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] ||{})['u2734128']={at:'3',rsi0:'200',rsi1:'200',pat:'6',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0',ptbg:'90',piw:'0',pih:'0',ptp:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2734128'});  </script>  <script src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/c.js" type="text/javascript"></script></div> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/JavaScript1.js"></script><link rel="stylesheet" type="text/css" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2016, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/notify.js"></script>
+
+    <script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div><input type="hidden" id="aa_g_data_ids">
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     <!--new top-->
+   
+    <link href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/wmd.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/showdown.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/prettify.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ask_float_block.js"></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/52b5334.js"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/blog_code.css">
+    <script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/saveToCode.js"></script>
+      <script type="text/javascript" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/main(1).js"></script>
+
+   
+ <div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-reply" title="快速回复" style="top:265px"></a><a id="com-d-top-a" style="top:303px" title="返回顶部" onclick=""></a> </div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="【OpenCV】图像几何变换：旋转，缩放，斜切" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="【OpenCV】图像几何变换：旋转，缩放，斜切： http://blog.csdn.net/xiaowei_cqu/article/details/7616044"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>dst</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>float</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>matrix</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>tutorials</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>图像处理</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="dst,float,matrix,tutorials,图像处理,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://blog.csdn.net/xiaowei_cqu/article/details/7616044#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./【OpenCV】图像几何变换：旋转，缩放，斜切 - 小魏的修行路 - 博客频道 - CSDN.NET_files/yun6.html" style="border: none; display: none; height: 84px; width: 100%; z-index: 2147483645; background: transparent;"></iframe></body></html>

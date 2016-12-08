@@ -1,0 +1,15 @@
+
+    var douban_badge_width;
+    var douban_badge_font;
+    var douban_style;
+
+    var dou_width = douban_badge_width?'width: '+douban_badge_width+';':'';
+    var dou_fnt = douban_badge_font?'font: '+douban_badge_font+';':'';
+    var dou_style= douban_style? douban_style:'';
+    var dou_bdr= '';
+
+    document.write(decodeURIComponent('%3Cdiv%20style%3D%22'+dou_style+'%22%3E%3Ctable%20cellspacing%3D%220%22%20cellpadding%3D%224%22%20style%3D%22'+dou_width+'%3E'));
+    document.write(decodeURIComponent('%3Ctr%20align%3D%22center%22%3E%3Ctd%20style%3D%22'+dou_fnt+'%22%3E%3Ca%20href%3D%22http%3A//movie.douban.com/subject/6952149/%22%20title%3D%22Breaking%20Bad%20%0A%0A%E7%BB%9D%E5%91%BD%E6%AF%92%E5%B8%88%20%20/%20%E8%B6%85%E8%B6%8A%E7%BD%AA%E6%81%B6%20%E7%AC%AC%E4%BA%94%E5%AD%A3%22%20target%3D_blank%3E%3Cimg%20src%3D%22http%3A//img7.doubanio.com/view/movie_poster_cover/ipst/public/p1579021082.jpg%22%20border%3D%220%22/%3E%3C/a%3E%3C/td%3E%3Ctd%20style%3D%22'+dou_fnt+'%22%3E%3Ca%20href%3D%22http%3A//movie.douban.com/subject/6866928/%22%20title%3D%22%E9%80%B2%E6%92%83%E3%81%AE%E5%B7%A8%E4%BA%BA%20ATTACK%20ON%20TITAN%0A%0A%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA%E7%9C%9F%E4%BA%BA%E7%89%88%EF%BC%9A%E5%89%8D%E7%AF%87%20/%20Shingeki%20no%20kyojin%3A%20Attack%20on%20Titan%22%20target%3D_blank%3E%3Cimg%20src%3D%22http%3A//img7.doubanio.com/view/movie_poster_cover/ipst/public/p2239093805.jpg%22%20border%3D%220%22/%3E%3C/a%3E%3C/td%3E%3C/tr%3E'));
+    document.write(decodeURIComponent('%3Ctr%3E%3Ctd%20align%3D%22center%22%20colspan%3D%222%22%3E%3Ca%20href%3D%22http%3A//www.douban.com/%22%20target%3D_blank%3E%3Cimg%20src%3D%22http%3A//www.douban.com/pics/atdouban.gif%22%20border%3D%220%22/%3E%3C/a%3E%3C/td%3E%3C/tr%3E'));
+    document.write(decodeURIComponent('%3C/table%3E%3C/div%3E'));
+    

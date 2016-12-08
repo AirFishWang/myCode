@@ -1,0 +1,41 @@
+    body{margin:0;padding:0;} 
+            .container{position:relative;}
+            a {
+                display:inline-block;
+                position:absolute;
+                background:#fff;
+                text-align:center;
+                overflow:hidden;
+                color:#000;
+                font-family:"ËÎÌו";
+                text-decoration:none;
+            }
+            .block1 {font-size:24px;font-weight:bolder}
+            .block2 {font-size:20px;}
+            .block2_5 {font-size:18px;}
+            .block2_6 {font-size:16px;}
+            .block2_7 {font-size:14px;}
+            .block3 {font-size:12px}
+            .triangle {
+				position:absolute;
+				border-left: 25px solid #fde35b; 
+				border-bottom: 25px solid transparent;
+				margin:0px;
+				padding:0;
+				height: 0px;
+				width: 0px;
+				text-align:center;
+				top:0px;
+                left:0px;
+			}
+			.ranktext {
+				position:absolute;
+			}
+            .ranktext a {
+                display:inline;
+                background:transparent;
+                color:#886235;
+                font-size:11px;
+                font-weight:bold;
+                font-family:"arial";
+            }
