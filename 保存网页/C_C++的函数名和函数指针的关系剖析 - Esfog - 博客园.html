@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C/C++的函数名和函数指针的关系剖析 - Esfog - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/bundle-WinXPBlue.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/bundle-WinXPBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Esfog/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Esfog/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Esfog/wlwmanifest.xml">
+<script type="text/javascript" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/encoder.js"></script><script src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'Esfog', cb_enable_mathjax=true;var isLogined=false;</script>
+<script src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/blog-common.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: ['AMS'], useLabelIds: true } },
+  'HTML-CSS': { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } }});</script><script type="text/javascript" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/MathJax.js"></script><style type="text/css">div#ad_b4,div#ad_b3,div#ad_b2,div#ad_b1,div#ad_c1,div#ad_c2,div#banner_right{display:none !important;}</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+
+<div id="top">
+	
+<div>
+	<table>
+		<tbody><tr>
+			<td class="HeaderTitles">
+                <h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="HeaderMainTitle" href="http://www.cnblogs.com/Esfog/">Esfog</a></h1>
+				<p id="tagline">快乐学习，快乐编程，快乐生活Forever！！</p>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="HeaderBar">
+	<table id="HeaderBar" class="HeaderBar">
+		<tbody><tr>
+		    <td class="HeaderBarTab" nowrap="">
+		        <img id="Header1_StartButton" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/BlueTabRight.gif" align="absmiddle">
+		        <a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a><img id="Header1_MyLinks1_Divider1" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/divider.gif" align="absmiddle">
+<a id="blog_nav_myhome" href="http://www.cnblogs.com/Esfog/">首页</a><img id="Header1_MyLinks1_Image1" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/divider.gif" align="absmiddle">
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a><img id="Header1_MyLinks1_Image2" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/divider.gif" align="absmiddle">
+<a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/Esfog">联系</a><img id="Header1_MyLinks1_Divider2" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/divider.gif" align="absmiddle">
+<a id="blog_nav_rss" href="http://www.cnblogs.com/Esfog/rss" target="_blank">订阅</a><img id="Header1_MyLinks1_Divider3" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/divider.gif" align="absmiddle">
+<!--<a id="Header1_MyLinks1_Syndication2" href="../../../../../Atom.aspx" target="_blank">Syndicate this Site (Atom)</a><img id="Header1_MyLinks1_Divider6" src="../../../../../Skins/WinXPBlue/Images/divider.gif" align="absmiddle" />
+<a id="blog_nav_rss_image" class="XMLLink" href="http://www.cnblogs.com/Esfog/rss" target="_blank"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>-->
+<a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a><img id="Header1_MyLinks1_Divider5" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/divider.gif" align="absmiddle">
+
+			</td>
+			<td class="HeaderBarTabBack" nowrap="" width="100%">
+				<div id="blog_stats">
+<div class="BlogStatsBar">
+	<table class="BlogStatsBar">
+		<tbody><tr>
+			<td width="100%">
+			</td>
+			<td class="BlogStatsBar" nowrap="">
+				&nbsp;
+				32 
+				Posts&nbsp;::
+				1 Stories
+				::
+				219 Comments
+				::
+				0 Trackbacks
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div>
+<div id="leftmenu">
+	
+		
+<h3>公告</h3>
+<div class="News">
+	<div id="blog-news"><div id="weiboIframe"><iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/index.html"></iframe></div>
+<strong>Since 2014.12.25:</strong><br>
+<a href="http://s07.flagcounter.com/more/Wn"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/saved_resource" alt="Flag Counter" border="0"></a>
+<br>
+<a href="http://www.clustrmaps.com/map/cnblogs.com/esfog" title="Visitor Map for cnblogs.com/esfog"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/map_v2.png" alt="">
+</a>
+<br>
+<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/Esfog/">Esfog</a><br>园龄：<a href="http://home.cnblogs.com/u/Esfog/" title="入园时间：2012-04-22">4年7个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/Esfog/followers/">77</a><br>关注：<a href="http://home.cnblogs.com/u/Esfog/followees/">10</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;9fa007fb-268c-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/Esfog/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/Esfog/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/Esfog/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/Esfog/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/Esfog/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/Esfog/p/What_is_the_use_of_learning_GameRendering.html">1. 学习游戏渲染(Shader)的用处</a></li><li><a href="http://www.cnblogs.com/Esfog/p/How_To_Learn_Shader.html">2. Shader的学习方法总结</a></li><li><a href="http://www.cnblogs.com/Esfog/p/How_To_Ask_A_Technique_Question.html">3. 如何请教一个技术问题</a></li><li><a href="http://www.cnblogs.com/Esfog/p/Where_is_the_way_of_ChineseGame.html">4. 中国游戏路在何方？</a></li><li><a href="http://www.cnblogs.com/Esfog/p/DissolveShader.html">5. Esfog_UnityShader教程_溶解效果Dissolve</a></li><li><a href="http://www.cnblogs.com/Esfog/p/Translation_BeginStart_ComputeShader.html">6. 【原创翻译】初识Unity中的Compute Shader</a></li><li><a href="http://www.cnblogs.com/Esfog/p/CoverOutline_Shader_Code.html">7. Esfog_UnityShader教程_遮挡描边(实现篇)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/CoverOutline_Shader.html">8. Esfog_UnityShader教程_遮挡描边(原理篇)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/ComputerScience_Learning_In_Compaus.html">9. 走好脚下的路--写给迷茫的计算机专业在校生</a></li><li><a href="http://www.cnblogs.com/Esfog/p/Camera_Aspect_In_Unity.html">10. 关于Unity中Camera的Aspect</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/Esfog/tag/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>(18)</li><li><a href="http://www.cnblogs.com/Esfog/tag/Shader/">Shader</a>(12)</li><li><a href="http://www.cnblogs.com/Esfog/tag/Unity/">Unity</a>(12)</li><li><a href="http://www.cnblogs.com/Esfog/tag/%E7%A8%8B%E5%BA%8F%E5%91%98/">程序员</a>(9)</li><li><a href="http://www.cnblogs.com/Esfog/tag/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/">图形渲染</a>(9)</li><li><a href="http://www.cnblogs.com/Esfog/tag/%E6%B8%B8%E6%88%8F/">游戏</a>(9)</li><li><a href="http://www.cnblogs.com/Esfog/tag/CG/">CG</a>(8)</li><li><a href="http://www.cnblogs.com/Esfog/tag/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>(7)</li><li><a href="http://www.cnblogs.com/Esfog/tag/%E5%85%A5%E9%97%A8/">入门</a>(7)</li><li><a href="http://www.cnblogs.com/Esfog/tag/HLSL/">HLSL</a>(3)</li><li><a href="http://www.cnblogs.com/Esfog/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li> <a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/Esfog/category/374994.html">C/C++(1)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/Esfog/category/671633.html">GPU(2)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/Esfog/category/375475.html">Python(1)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/Esfog/category/504409.html">Unity(14)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/Esfog/category/439935.html">诗山文海(3)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/Esfog/category/832937.html">思考(1)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/Esfog/category/434445.html">心路随笔(10)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/Esfog/category/544524.html">游戏之路(10)</a></li>
+			
+				<li> <a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/Esfog/category/671632.html">原创翻译(1)</a></li>
+			
+				</ul>
+			
+	</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		46800
+	</li><li>
+		排名 -
+		5370
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Esfog/p/What_is_the_use_of_learning_GameRendering.html#3573528">1. Re:学习游戏渲染(Shader)的用处</a></li>
+        <li class="recent_comment_body">@幻想FlyQQ群这种聊天工具之类是不适合讨论问题的，贴吧的话大部分内容都是入门级的。还是得看书，查资料，自己动手，国内的好书看完了就多去看看老外的东西。还要注重基础，不能好高骛远，把底子打好才能高屋......</li>
+        <li class="recent_comment_author">--Esfog</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Esfog/p/What_is_the_use_of_learning_GameRendering.html#3573366">2. Re:学习游戏渲染(Shader)的用处</a></li>
+        <li class="recent_comment_body">然而还是没发现提升的途径<br>感觉需要一个可以讨论，或者帮助别人来提升自己的途径<br>有这样子的群或者贴吧之类的么</li>
+        <li class="recent_comment_author">--幻想Fly</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Esfog/p/3933896.html#3543425">3. Re:New Begin--工作一年所思所感小记</a></li>
+        <li class="recent_comment_body">看完了，我也要加油。</li>
+        <li class="recent_comment_author">--Godc丶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Esfog/p/ComputerScience_Learning_In_Compaus.html#3536289">4. Re:走好脚下的路--写给迷茫的计算机专业在校生</a></li>
+        <li class="recent_comment_body">@Esfog谢谢前辈鼓励了，我也期待我能到达前辈那种高度，虽然在这条路上踟蹰前行，但不停，我就有希望。...</li>
+        <li class="recent_comment_author">--Godc丶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Esfog/p/ComputerScience_Learning_In_Compaus.html#3536269">5. Re:走好脚下的路--写给迷茫的计算机专业在校生</a></li>
+        <li class="recent_comment_body">@krypt加油，我认识好几个同事都不是计算机专业出身的...</li>
+        <li class="recent_comment_author">--Esfog</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/Esfog/archive/2012/12/03/2799123.html">1. 有缺憾才有希冀----我的不完美求职经历(5327)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3534435.html">2. Esfog_UnityShader教程_前言(4673)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3562022.html">3. Esfog_UnityShader教程_UnityShader语法实例浅析(4449)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3955075.html">4. 谈谈程序员学习英文(3884)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3763169.html">5. 关于Unity游戏开发方向找工作方面的一些个人看法(3746)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/Esfog/archive/2012/12/03/2799123.html">1. 有缺憾才有希冀----我的不完美求职经历(51)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3933896.html">2. New Begin--工作一年所思所感小记(30)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/CoverOutline_Shader_Code.html">3. Esfog_UnityShader教程_遮挡描边(实现篇)(23)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3955075.html">4. 谈谈程序员学习英文(21)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3608833.html">5. Esfog_UnityShader教程_NormalMap法线贴图(12)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/Esfog/p/3955075.html">1. 谈谈程序员学习英文(11)</a></li><li><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html">2. C/C++的函数名和函数指针的关系剖析(5)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/Translation_BeginStart_ComputeShader.html">3. 【原创翻译】初识Unity中的Compute Shader(4)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/CoverOutline_Shader_Code.html">4. Esfog_UnityShader教程_遮挡描边(实现篇)(3)</a></li><li><a href="http://www.cnblogs.com/Esfog/p/3933896.html">5. New Begin--工作一年所思所感小记(3)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+
+<div id="main">
+	
+<div id="post_detail">
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html">C/C++的函数名和函数指针的关系剖析</a>
+	</div>
+	
+	<div class="postText">
+		<div id="cnblogs_post_body"><p>　　 博客的处女篇啊！一直在回头看C++的知识，这几天就和指针耗上了！说实话现在上次仔细看C++的时候还是两年前了！后头再看发现真越看问题越多，倒不是我知识退步了，而是对问题更加的求甚解了！不是有人说过么：读书能读出问题，才没有白读！（应该不是我自己发明的）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 接下来的几篇文章准备写一写C++的指针和引用方面的东西吧，倒不是来给大家讲课，只是分享，学习，全当自己做个笔记，也欢迎各路神仙小妖多多交流指导！废话少说，直奔主题！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 今天的Topic就是<span style="color: #ff0000;"><strong>函数名指针和函数指针</strong></span>：我们先来看一下函数指针式如何定义的，假如我们有一个函数int fun(int){...};那么他对应的函数指针写法就应该是int (*p)(int);然后再对他进行赋值,即p=fun;之后你就可以在接下来的地方按p作为函数名来调用它用起来完全和fun一样。(注意这里的p指针并不是只能接受fun这个函数名，任何返回值是int,参数只有一个int的函数都可以把函数名赋给p)</p>
+<p>　　先陪女朋友出去吃个饭，回来继续写哈。。。</p>
+<p>　　上面都是些基本知识，大家都应该知道，下面就分享一下我个人对网上各种参考资料的总结和自我理解(仅供参考):首先说一下C/C++在创建一个变量的时候比如int a;相应的在内存就会分配一个4个字节（根据不同机器可能不同）空间来存放这个int变量，而假设这4个字节的起始地址是0XFF0A，那么实际上就存在一种变量名和内存地址的映射，即a可以看做是一个标示符，他只是代表着0XFF0A这个地址，在程序中你对a进行的操作实际上也就是对内存中以0XFF0A为首地址的4个字节的操作，特别是如果对a进行取地址操作也就是&amp;a实际上就是返回0XFF0A这个地址值，实际上你可以看成就是返回一个指向这个地址的指针(如果你觉的不能理解，就当我没说吧).同理对于我们在程序中创建的函数，他是保存在程序中的单独区域的，而我们调用它们就像使用变量一样需要一个地址来唯一的指向它，所以每个函数都需要一个地址来唯一标识自己(也就是我们常说的入口地址)，就像上面的a对应0XFF0A，那么假设我们定义了一个int fun(int){};函数的入口地址是0XAAEE,则fun也就是函数名他会映射0XAAEE,和上面的int变量a一样如果对它进行取地址&amp;fun的话就会返回0XAAEE，实际上fun也是一种类型,就当它是函数名类型好了,只要记住函数名本身并不是一个指针类型就可以了。</p>
+<p>　　下面说重点，我们都知道在调用函数的时候有函数名就够了,比如fun(2);不要以为只要有函数名就能调用函数了，其实这只是写法上的一个迷惑点，而编译器在编译的时候一律都会进行所谓的<span style="color: #ff0000;">"<span class="Apple-style-span" style="word-spacing: 0px; font: 14px/23px simsun; text-transform: none; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: #ffffff; text-align: left; orphans: 2; widows: 2; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px;">Function-to-pointer conversion"<span style="color: #000000;">,也就是把函数名<span style="color: #339966;">隐式</span>转换成函数指针类型，也就是要通过函数指针来调用函数，所以如果你在调用函数的时候写成(&amp;fun)(2)也是一样能工作的,因为&amp;fun实际上就是返回一个函数指针,参照上一段中&amp;a的例子,只是这种写法很不常见,即使你不显式的写出&amp;的话编译器也会隐式的进行转换,注意&amp;fun左右的括号必须有,这是因为运算符优先级的问题。</span></span></span></p>
+<p><span style="color: #ff0000;"><span class="Apple-style-span" style="word-spacing: 0px; font: 14px/23px simsun; text-transform: none; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: #ffffff; text-align: left; orphans: 2; widows: 2; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px;"><span style="color: #000000;">　　其实即使你写成(*fun)(2)也是可以正常运行的，这是因为当编译器看到fun的时候发现它前面没有&amp;也就是你没有给他显示的转换成指针那么他就要隐式的转换成指针，当转换完之后发现前面又有一个*这时候也就是要进行所谓的"解引用"操作，也就是到*后面里指针里取出来值，而那么值实际上也就也就是0XAAEE也就是函数名fun，这么一次隐式换然后再来一次解引用实际上相当于什么也没做，所以系统还会再进行一次隐式的<span style="color: #ff0000;">"<span class="Apple-style-span" style="word-spacing: 0px; font: 14px/23px simsun; text-transform: none; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: #ffffff; text-align: left; orphans: 2; widows: 2; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px;">Function-to-pointer conversion"<span style="color: #000000;">,即使你写成(*******fun)(2)也会正常运行，和刚才的一个道理，只是多做了几次反复的转解操作而已，都是编译器自己完成的，不必去理会！</span></span></span></span></span></span></p>
+<p><span style="color: #ff0000;"><span class="Apple-style-span" style="word-spacing: 0px; font: 14px/23px simsun; text-transform: none; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: #ffffff; text-align: left; orphans: 2; widows: 2; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px;"><span style="color: #000000;"><span style="color: #ff0000;"><span class="Apple-style-span" style="word-spacing: 0px; font: 14px/23px simsun; text-transform: none; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: #ffffff; text-align: left; orphans: 2; widows: 2; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px;"><span style="color: #000000;">　　上面的文字叙述可能有些啰嗦，不知道大家能不能听懂我的意思。接下来上几行代码，大家结合着看看</span></span></span></span></span></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> #include&lt;iostream&gt;
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">using</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> std;
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">void</span> fun(<span style="color: #0000ff;">int</span><span style="color: #000000;"> a)
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 5</span>     
+<span style="color: #008080;"> 6</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 7</span> 
+<span style="color: #008080;"> 8</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> main()
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">10</span>     cout&lt;&lt;fun&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;">11</span>     cout&lt;&lt;*fun&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;">12</span>     cout&lt;&lt;&amp;fun&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;">13</span>     cout&lt;&lt;*****fun&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;">14</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>你在自己机器上运行一下你会发现他们输出的值都是一样的，也就是都是指向同一个函数地址的指针值。</p>
+<p>下面我们再结合自己定义的函数指针来看看</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> #include&lt;iostream&gt;
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">using</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> std;
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">int</span> fun(<span style="color: #0000ff;">int</span><span style="color: #000000;"> a)
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 5</span>     cout&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">fun</span><span style="color: #800000;">"</span>&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">return</span> <span style="color: #800080;">0</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main()
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">11</span>     <span style="color: #0000ff;">int</span>(*p)(<span style="color: #0000ff;">int</span>)=<span style="color: #000000;">fun;
+</span><span style="color: #008080;">12</span>     <span style="color: #0000ff;">int</span>(*p1)(<span style="color: #0000ff;">int</span>)=*<span style="color: #000000;">fun;
+</span><span style="color: #008080;">13</span>     <span style="color: #0000ff;">int</span>(*p2)(<span style="color: #0000ff;">int</span>)=&amp;<span style="color: #000000;">fun;
+</span><span style="color: #008080;">14</span>     p(<span style="color: #800080;">1</span><span style="color: #000000;">);
+</span><span style="color: #008080;">15</span>     p1(<span style="color: #800080;">1</span><span style="color: #000000;">);
+</span><span style="color: #008080;">16</span>     p2(<span style="color: #800080;">1</span><span style="color: #000000;">);
+</span><span style="color: #008080;">17</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>你会发现函数都能正常的运行，其实p1,p2,p和fun赋值之后大家一样理解就行了。接着上代码</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_608306" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp preprocessor">#include&lt;iostream&gt;</code></div><div class="line number2 index1 alt1"><code class="cpp keyword bold">using</code> <code class="cpp keyword bold">namespace</code> <code class="cpp plain">std;</code></div><div class="line number3 index2 alt2"><code class="cpp color1 bold">int</code> <code class="cpp plain">fun(</code><code class="cpp color1 bold">int</code> <code class="cpp plain">a)</code></div><div class="line number4 index3 alt1"><code class="cpp plain">{</code></div><div class="line number5 index4 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">cout&lt;&lt;</code><code class="cpp string">"fun"</code><code class="cpp plain">&lt;&lt;endl;</code></div><div class="line number6 index5 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">return</code> <code class="cpp plain">0;</code></div><div class="line number7 index6 alt2"><code class="cpp plain">}</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="cpp keyword bold">void</code> <code class="cpp plain">main()</code></div><div class="line number10 index9 alt1"><code class="cpp plain">{</code></div><div class="line number11 index10 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code><code class="cpp plain">(*p)(</code><code class="cpp color1 bold">int</code><code class="cpp plain">)=fun;</code></div><div class="line number12 index11 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">p(1);</code></div><div class="line number13 index12 alt2"><code class="cpp comments">//&nbsp; (&amp;p)(1);&nbsp;&nbsp;&nbsp; </code></div><div class="line number14 index13 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">(*p)(1);</code></div><div class="line number15 index14 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">(****p)(1);</code></div><div class="line number16 index15 alt1"><code class="cpp plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;</p>
+<p>上面的程序也都会正常的运行，只要再理解的时候把p当成只是对函数名多做了一次转换就可以了,接下来理解都一样！注意上面注释掉的哪一行是不能运行的，因为p是我们自己定义的函数指针类型，如果你对指针取地址那么将得到p这个变量本身的地址，这就不能正确调用函数了！再多说一句，其实你如果运行&amp;&amp;fun这个式子也是非法的，至于为什么，大家一起帮我思考思考，我个人认为当我们运行&amp;fun的时候他会转换成函数指针而实际上这个指针只是一个临时值而临时值是没有实际存放的内存地址的所以也就无法继续取地址了！个人猜想，大家一起帮我分析分析吧！</p>
+<p>　　呵呵，第一个博文算是写完了，也该睡觉了！很久没写东西了，有点生疏了，希望大家多多见谅，以后再接再厉和大家一起分享，一起学习，上述内容很多都加入了笔者自己的理解，可能有不对的地方，希望大家不吝指出，谢谢了！</p>
+<p>　　如需转载，希望大家注明原文出处链接以及说明作者Esfog，谢谢，分享是一种快乐！分享是一种态度！</p>
+<p><a id="Editor_Edit_hlEntryLink" title="view: C/C++的函数名和函数指针的关系剖析" href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html" target="_blank">http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html</a></p>
+<p>　　</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/Esfog/category/374994.html" target="_blank">C/C++</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/Esfog/tag/%E6%8C%87%E9%92%88/">指针</a>, <a href="http://www.cnblogs.com/Esfog/tag/C%2FC%2B%2B/">C/C++</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2467249,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;9fa007fb-268c-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/Esfog/" target="_blank"><img src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/20150901164226.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/Esfog/">Esfog</a><br>
+            <a href="http://home.cnblogs.com/u/Esfog/followees">关注 - 10</a><br>
+            <a href="http://home.cnblogs.com/u/Esfog/followers">粉丝 - 77</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;9fa007fb-268c-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2467249,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">5</span>
+    </div>
+    <div class="buryit" onclick="votePost(2467249,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/Esfog/archive/2012/04/25/2470339.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/Esfog/archive/2012/04/25/2470339.html" title="发布于2012-04-25 20:02">对Python中yield的理解</a><br></div>
+</div>
+
+
+	</div>
+	
+	<div class="postfoot">
+		posted on <span id="post-date">2012-04-23 23:13</span> <a href="http://www.cnblogs.com/Esfog/">Esfog</a> 阅读(<span id="post_view_count">1452</span>) 评论(<span id="post_comment_count">7</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2467249" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#" onclick="AddToWz(2467249);return false;">收藏</a>
+	</div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=115589,cb_entryId=2467249,cb_blogApp=currentBlogApp,cb_blogUserGuid='9fa007fb-268c-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/4/23 23:13:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a name="feedback"></a>
+<br>
+<div id="comments">
+	<h3>Feedback</h3>
+		
+		
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2362855" class="layer">#1楼</a><a name="2362855" id="comment_anchor_2362855"></a>
+							<span>
+								 <span class="comment_date">2012-04-24 13:38</span>
+							</span>
+						<a id="a_comment_author_2362855" href="http://www.cnblogs.com/ms_senda/" target="_blank">假面佛</a> <a href="http://msg.cnblogs.com/send/%E5%81%87%E9%9D%A2%E4%BD%9B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2362855" class="blog_comment_body">哈哈！C#程序员表示看懂了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2362855,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2362855,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2362855_avatar" style="display:none;">http://pic.cnblogs.com/face/126792/20130930111150.png</span>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2363007" class="layer">#2楼</a><a name="2363007" id="comment_anchor_2363007"></a>
+							<span>
+								 <span class="comment_date">2012-04-24 15:58</span>
+							</span>
+						<a id="a_comment_author_2363007" href="http://www.cnblogs.com/fxam/" target="_blank">fxam</a> <a href="http://msg.cnblogs.com/send/fxam" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2363007" class="blog_comment_body">写的还是很易懂的<br>谢谢楼主的分享。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2363007,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2363007,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2363007_avatar" style="display:none;">http://pic.cnblogs.com/face/313273/20140510111222.png</span>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2363235" class="layer">#3楼</a><a name="2363235" id="comment_anchor_2363235"></a>[<span class="louzhu">楼主</span>]
+							<span>
+								 <span class="comment_date">2012-04-24 21:34</span>
+							</span>
+						<a id="a_comment_author_2363235" href="http://www.cnblogs.com/Esfog/" target="_blank">Esfog</a> <a href="http://msg.cnblogs.com/send/Esfog" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2363235" class="blog_comment_body"><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2362855" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2362855);">@</a>
+假面佛<br>Thank you！作为我第一篇博文的第一个评论，真是感谢啊，以后继续多多与大家交流，欢迎加关注！嘎嘎！<br>您是C#程序员啊，那一定是前辈！我还没有毕业呢。。。C#我也只是入门阶段，以后希望能多多请教你呀！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2363235,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2363235,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2363235_avatar" style="display:none;">http://pic.cnblogs.com/face/401477/20150901164226.png</span>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2363236" class="layer">#4楼</a><a name="2363236" id="comment_anchor_2363236"></a>[<span class="louzhu">楼主</span>]
+							<span>
+								 <span class="comment_date">2012-04-24 21:36</span>
+							</span>
+						<a id="a_comment_author_2363236" href="http://www.cnblogs.com/Esfog/" target="_blank">Esfog</a> <a href="http://msg.cnblogs.com/send/Esfog" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2363236" class="blog_comment_body"><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2363007" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2363007);">@</a>
+fxam<br>第二个评论也要感谢啊，欢迎多多交流，多多讨论。上了高中学理以后语文就荒废了！就怕写的让大家看着晕，你这话给我动力了啊！以后继续努力！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2363236,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2363236,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2363236_avatar" style="display:none;">http://pic.cnblogs.com/face/401477/20150901164226.png</span>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2363716" class="layer">#5楼</a><a name="2363716" id="comment_anchor_2363716"></a>
+							<span>
+								 <span class="comment_date">2012-04-25 13:36</span>
+							</span>
+						<a id="a_comment_author_2363716" href="http://www.cnblogs.com/fxam/" target="_blank">fxam</a> <a href="http://msg.cnblogs.com/send/fxam" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2363716" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2363236" title="查看引用原文">引用</a></legend>Esfog：<br>@fxam<br>第二个评论也要感谢啊，欢迎多多交流，多多讨论。上了高中学理以后语文就荒废了！就怕写的让大家看着晕，你这话给我动力了啊！以后继续努力！</fieldset><br>大家一起努力。！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2363716,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2363716,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2363716_avatar" style="display:none;">http://pic.cnblogs.com/face/313273/20140510111222.png</span>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2374420" class="layer">#6楼</a><a name="2374420" id="comment_anchor_2374420"></a>
+							<span>
+								 <span class="comment_date">2012-05-11 00:08</span>
+							</span>
+						<a id="a_comment_author_2374420" href="http://home.cnblogs.com/u/407747/" target="_blank">kvan</a> <a href="http://msg.cnblogs.com/send/kvan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2374420" class="blog_comment_body">thanks~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2374420,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2374420,&#39;Bury&#39;,this)">反对(0)</a></div>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+				<div class="post">			
+					<div class="postTitle">
+						<a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#2936213" class="layer">#7楼</a><a name="2936213" id="comment_anchor_2936213"></a><span id="comment-maxId" style="display:none;">2936213</span><span id="comment-maxDate" style="display:none;">2014/5/10 21:45:37</span>
+							<span>
+								 <span class="comment_date">2014-05-10 21:45</span>
+							</span>
+						<a id="a_comment_author_2936213" href="http://home.cnblogs.com/u/521609/" target="_blank">fourier307</a> <a href="http://msg.cnblogs.com/send/fourier307" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+					</div>
+					<div class="postText">
+						<div id="comment_body_2936213" class="blog_comment_body">写的不错，赞</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2936213,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2936213,&#39;Bury&#39;,this)">反对(0)</a></div>
+						<br>
+						&nbsp;&nbsp;<span class="comment_actions"></span>
+					</div>
+				</div>
+				<br>
+			
+</div><div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://rongcloud.cn/reports/journal2" target="_blank">【推荐】融云发布 App 社交化白皮书 IM 提升活跃超 8 倍</a><br><a href="http://www.163yun.com/zs?zsfrom=vcloud" target="_blank">【邀请】网易云渠道合作伙伴招商大会，邀您共创未来</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/componentone.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=C1&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/24442-20161031104644908-57254170.png" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/558740/" target="_blank">1700美刀的傻瓜机终结者？那背着16个镜头的手机，要发货了</a><br> ·  <a href="http://news.cnblogs.com/n/558739/" target="_blank">“秒杀三星苹果”、“碾压高通”……面对这些捧杀，华为终于表态了</a><br> ·  <a href="http://news.cnblogs.com/n/558755/" target="_blank">Facebook承认有些广告收视率指标数据一直算错了</a><br> ·  <a href="http://news.cnblogs.com/n/558754/" target="_blank">Magic Leap CEO否认造假 称产品发布后质疑者可以试用</a><br> ·  <a href="http://news.cnblogs.com/n/558753/" target="_blank">Google正在测试新功能，让用户在搜索结果内给影视作品评级</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/7898/" target="_blank"><img width="468" height="60" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/24442-20161129114435240-502338490.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br> ·  <a href="http://kb.cnblogs.com/page/551422/" target="_blank">没那么难，谈CSS的设计模式</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © Esfog
+</p>
+
+<!--PageEndHtml Block Begin-->
+<div align="center"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253971190'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253971190%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1253971190"><a href="http://www.cnzz.com/stat/website.php?web_id=1253971190" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/pic2.gif"></a></span><script src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/z_stat.php" type="text/javascript"></script><script src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=10201874; 
+var sc_invisible=0; 
+var sc_security="2dee5b44"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script><script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript>&lt;div class="statcounter"&gt;&lt;a title="shopify visitor
+statistics" href="http://statcounter.com/shopify/"
+target="_blank"&gt;&lt;img class="statcounter"
+src="http://c.statcounter.com/10201874/0/2dee5b44/0/"
+alt="shopify visitor statistics"&gt;&lt;/a&gt;&lt;/div&gt;</noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+<!--PageEndHtml Block End-->
+
+
+</div><div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.cnblogs.com/Esfog/archive/2012/04/23/2467249.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./C_C++的函数名和函数指针的关系剖析 - Esfog - 博客园_files/yun6.html" style="border: none; display: none; height: 84px; width: 100%; z-index: 2147483645; background: transparent;"></iframe></body></html>
