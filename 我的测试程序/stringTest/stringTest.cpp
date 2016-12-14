@@ -12,5 +12,8 @@ int main()
 	char src[] = "ag";
 	char dst[] = "abc";
 	strcpy(dst, src);            //运行错误
+
+    char *p = "hello world";
+    //p[0] = 'k';  //会运行出错
 	return 0;
 }
