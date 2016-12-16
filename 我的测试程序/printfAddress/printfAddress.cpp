@@ -6,4 +6,7 @@ void main()
 	printf("%x\n", &a);
 	printf("%p\n", &a);
 	printf("%d\n", sizeof(&a));
+
+    float f = 3.14159;
+    printf("%.2f", f);
 }
