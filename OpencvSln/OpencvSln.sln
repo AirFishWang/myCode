@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "houghLines", "houghLines\houghLines.vcxproj", "{433156E4-9521-4BF4-85EF-859979A1B8D6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HorizontalCorrect", "HorizontalCorrect\HorizontalCorrect.vcxproj", "{CD81C80B-47BA-4860-BA6E-95922A258072}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RotateImg", "RotateImg\RotateImg.vcxproj", "{D55CEC33-EFA4-41E2-B0EE-2DA81770C4EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dftRotate", "dftRotate\dftRotate.vcxproj", "{63B72D60-269A-4B02-9B02-BE7A174B1B0E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gui", "Gui\Gui.vcxproj", "{A713B2DF-113E-40FA-988B-5B41965057D7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RGBThreshold", "RGBThreshold\RGBThreshold.vcxproj", "{C1A6EF7E-C62C-4CA5-A689-AD9DBA010BBD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SortTest", "SortTest\SortTest.vcxproj", "{6A026161-395F-4EC2-A196-31C3B95059B6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IplImageRead", "IplImageRead\IplImageRead.vcxproj", "{58210BAA-5F21-4CBE-9391-23E950A5EF63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{433156E4-9521-4BF4-85EF-859979A1B8D6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{433156E4-9521-4BF4-85EF-859979A1B8D6}.Debug|Win32.Build.0 = Debug|Win32
+		{433156E4-9521-4BF4-85EF-859979A1B8D6}.Release|Win32.ActiveCfg = Release|Win32
+		{433156E4-9521-4BF4-85EF-859979A1B8D6}.Release|Win32.Build.0 = Release|Win32
+		{CD81C80B-47BA-4860-BA6E-95922A258072}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CD81C80B-47BA-4860-BA6E-95922A258072}.Debug|Win32.Build.0 = Debug|Win32
+		{CD81C80B-47BA-4860-BA6E-95922A258072}.Release|Win32.ActiveCfg = Release|Win32
+		{CD81C80B-47BA-4860-BA6E-95922A258072}.Release|Win32.Build.0 = Release|Win32
+		{D55CEC33-EFA4-41E2-B0EE-2DA81770C4EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D55CEC33-EFA4-41E2-B0EE-2DA81770C4EB}.Debug|Win32.Build.0 = Debug|Win32
+		{D55CEC33-EFA4-41E2-B0EE-2DA81770C4EB}.Release|Win32.ActiveCfg = Release|Win32
+		{D55CEC33-EFA4-41E2-B0EE-2DA81770C4EB}.Release|Win32.Build.0 = Release|Win32
+		{63B72D60-269A-4B02-9B02-BE7A174B1B0E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{63B72D60-269A-4B02-9B02-BE7A174B1B0E}.Debug|Win32.Build.0 = Debug|Win32
+		{63B72D60-269A-4B02-9B02-BE7A174B1B0E}.Release|Win32.ActiveCfg = Release|Win32
+		{63B72D60-269A-4B02-9B02-BE7A174B1B0E}.Release|Win32.Build.0 = Release|Win32
+		{A713B2DF-113E-40FA-988B-5B41965057D7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A713B2DF-113E-40FA-988B-5B41965057D7}.Debug|Win32.Build.0 = Debug|Win32
+		{A713B2DF-113E-40FA-988B-5B41965057D7}.Release|Win32.ActiveCfg = Release|Win32
+		{A713B2DF-113E-40FA-988B-5B41965057D7}.Release|Win32.Build.0 = Release|Win32
+		{C1A6EF7E-C62C-4CA5-A689-AD9DBA010BBD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C1A6EF7E-C62C-4CA5-A689-AD9DBA010BBD}.Debug|Win32.Build.0 = Debug|Win32
+		{C1A6EF7E-C62C-4CA5-A689-AD9DBA010BBD}.Release|Win32.ActiveCfg = Release|Win32
+		{C1A6EF7E-C62C-4CA5-A689-AD9DBA010BBD}.Release|Win32.Build.0 = Release|Win32
+		{6A026161-395F-4EC2-A196-31C3B95059B6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6A026161-395F-4EC2-A196-31C3B95059B6}.Debug|Win32.Build.0 = Debug|Win32
+		{6A026161-395F-4EC2-A196-31C3B95059B6}.Release|Win32.ActiveCfg = Release|Win32
+		{6A026161-395F-4EC2-A196-31C3B95059B6}.Release|Win32.Build.0 = Release|Win32
+		{58210BAA-5F21-4CBE-9391-23E950A5EF63}.Debug|Win32.ActiveCfg = Debug|Win32
+		{58210BAA-5F21-4CBE-9391-23E950A5EF63}.Debug|Win32.Build.0 = Debug|Win32
+		{58210BAA-5F21-4CBE-9391-23E950A5EF63}.Release|Win32.ActiveCfg = Release|Win32
+		{58210BAA-5F21-4CBE-9391-23E950A5EF63}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
