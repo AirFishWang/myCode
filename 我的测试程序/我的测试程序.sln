@@ -47,6 +47,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pointer", "Pointer\Pointer.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "structTest", "structTest\structTest.vcxproj", "{87BF9174-4C74-42DE-AD41-0208939D64A4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "staticMember", "staticMember\staticMember.vcxproj", "{6C8E7672-C2E5-4F4C-8756-75414DD4104A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -277,6 +279,16 @@ Global
 		{87BF9174-4C74-42DE-AD41-0208939D64A4}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{87BF9174-4C74-42DE-AD41-0208939D64A4}.Release|Win32.ActiveCfg = Release|Win32
 		{87BF9174-4C74-42DE-AD41-0208939D64A4}.Release|Win32.Build.0 = Release|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Debug|Win32.Build.0 = Debug|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Release|Win32.ActiveCfg = Release|Win32
+		{6C8E7672-C2E5-4F4C-8756-75414DD4104A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
