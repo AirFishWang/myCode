@@ -1,0 +1,1 @@
+include ':app', ':myapplication', ':camera2test'
