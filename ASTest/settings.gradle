@@ -1,1 +1,1 @@
-include ':app', ':myapplication', ':camera2test'
+include ':app', ':myapplication', ':camera2test', ':BollView'
