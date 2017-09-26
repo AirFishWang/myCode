@@ -13,7 +13,6 @@
 // Other includes
 #include "Shader.h"
 
-
 // Function prototypes
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
@@ -138,6 +137,7 @@ int main()
     glBindTexture(GL_TEXTURE_2D, 0);
 
 
+
     // Game loop
     while (!glfwWindowShouldClose(window))
     {
@@ -147,8 +147,9 @@ int main()
         // Render
         // Clear the colorbuffer
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
+        glClear(GL_COLOR_BUFFER_BIT);
         // Activate shader
         ourShader.Use();
 

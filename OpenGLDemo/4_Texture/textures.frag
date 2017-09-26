@@ -12,6 +12,7 @@ void main()
 {
 	// Linearly interpolate between both textures (second texture is only slightly combined)
 	color = mix(texture(ourTexture1, TexCoord), texture(ourTexture2, TexCoord), 0.2);
-
     color = mix(color, vec4(ourColor,1.0f), 0.05);
+
+    //color = vec4(vec3(gl_FragCoord.z), 1.0f);    //输出颜色缓冲区的值
 }
