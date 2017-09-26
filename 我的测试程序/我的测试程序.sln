@@ -57,6 +57,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "weiyu", "weiyu\weiyu.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enumTest", "enumTest\enumTest.vcxproj", "{BCAFE070-E7A3-44A8-A768-57394FDDDBB4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DestructorTest", "DestructorTest\DestructorTest.vcxproj", "{6D3755F9-A522-4804-9F07-3791EEB0A11C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -337,6 +339,16 @@ Global
 		{BCAFE070-E7A3-44A8-A768-57394FDDDBB4}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{BCAFE070-E7A3-44A8-A768-57394FDDDBB4}.Release|Win32.ActiveCfg = Release|Win32
 		{BCAFE070-E7A3-44A8-A768-57394FDDDBB4}.Release|Win32.Build.0 = Release|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Debug|Win32.Build.0 = Debug|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Release|Any CPU.ActiveCfg = Release|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Release|Win32.ActiveCfg = Release|Win32
+		{6D3755F9-A522-4804-9F07-3791EEB0A11C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
