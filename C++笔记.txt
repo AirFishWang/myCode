@@ -69,7 +69,7 @@
                     Derived *pd4 = dynamic_cast<Derived *>(P);     //运行时，pd4=NULL
 (28)虚函数表与虚指针: 虚函数表属于类，虚指针属于对象。对于单继承来说，一个含有虚函数的类只有一张虚函数表，对于多继承来说，会有多个虚函数表，对应对象有多个虚指针 
 (29)多重继承，虚继承的内存布局： http://blog.chinaunix.net/uid-16723279-id-3568748.html    http://www.cnblogs.com/demian/p/6538301.html   
-           
+(30)C++并发指南  http://www.cnblogs.com/haippy/p/3284540.html           
               
               
               
