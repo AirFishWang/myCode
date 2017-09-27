@@ -55,7 +55,9 @@
             同一个函数名也只有一个映射。这样不仅就解决了二义性问题，也节省了内存，避免了数据不一致的问题。     
 
 (22)计算机字符编码   
-(23)进程通信和线程通信 http://blog.csdn.net/fly_yr/article/details/50970198         
+(23)进程通信和线程通信 http://blog.csdn.net/fly_yr/article/details/50970198   
+(24)仿函数(函数对象): 重载了操作符()的类，其对象被称为函数对象，因为它们是行为类似函数的对象，所以称之为仿函数。
+(25)lambda表达式  http://blog.csdn.net/fjzpdkf/article/details/50249287     
               
               
               
