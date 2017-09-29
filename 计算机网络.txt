@@ -34,6 +34,11 @@
 (22)TCP首部窗口字段:  指明现在允许对方发送的数据量，发送方依据接收方返回的确认号和窗口字段构造出发送窗口，窗口的单位是字节
 (23)TCP的最大报文长度指数据段，不包含首部
 (24)发送窗口等于拥塞窗口和接收窗口的最小值
+(25)LAN    局域网        Local Area Network
+    WAN    广域网        Wide Area Network
+    WLAN   无线局域网    Wireless LAN, WLAN
+    VLAN   虚拟局域网    Virtual Local Area Network
+    VPN    虚拟专用网络  Virtual Private Network
 
 
 
