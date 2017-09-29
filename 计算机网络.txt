@@ -39,6 +39,8 @@
     WLAN   无线局域网    Wireless LAN, WLAN
     VLAN   虚拟局域网    Virtual Local Area Network
     VPN    虚拟专用网络  Virtual Private Network
+(26)数据链路层的三个基本问题: 封装成帧, 透明传输, 差错校验(区别纠错和校验， PPP协议不需要纠错)
+(27)PPP协议: 透明传输的实现 字节填充， 零比特填充
 
 
 
