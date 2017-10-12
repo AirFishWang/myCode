@@ -1,0 +1,6 @@
+每一个windows应用程序，操作系统均会为其建立一个消息队列
+windows应用程序 不等于 窗口程序， 窗口只是一种对象
+dos下c语言程序入口 main函数
+windows程序的入口函数 WinMain函数
+TranlateMessage(MSG *)：转换消息，例如按下一个按钮会产生WM_KEYDOWN和WM_KEYUP消息对，TranlateMessage则会产生WM_CAHR消息，投递到消息队列中
+DispatchMessage(MSG *): 将消息传递到窗口过程函数，也就是回调函数

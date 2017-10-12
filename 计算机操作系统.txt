@@ -2,8 +2,7 @@
                     即虽然页面被换出内存了，但认为其还在内存。这个地方可以被称为假的实地址。
                     http://blog.csdn.net/bingjing12345/article/details/7722910
 
-32位与64位本质区别：
-死循环与cpu占用率：
-                  
-CPU占用率与死循环: http://blog.csdn.net/skyflying2012/article/details/50609050                    
+32位与64位本质区别：计算机总线一次会传递一个字节块(称为字)，字长的宽度, 通用寄存器的宽度                  
+CPU占用率与死循环: http://blog.csdn.net/skyflying2012/article/details/50609050    
+字符编码：http://blog.csdn.net/stephen1315/article/details/7476236                
 

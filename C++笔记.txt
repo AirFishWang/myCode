@@ -1,4 +1,4 @@
-(1)volatile   遇到这个关键字声明的变量，编译器对访问该变量的代码就不再进行优化，从而可以提供对特殊地址的稳定访问。声明时语法：int volatile vInt; 
+﻿(1)volatile   遇到这个关键字声明的变量，编译器对访问该变量的代码就不再进行优化，从而可以提供对特殊地址的稳定访问。声明时语法：int volatile vInt; 
               当要求使用 volatile 声明的变量的值的时候，系统总是重新从它所在的内存读取数据，即使它前面的指令刚刚从该处读取过数据。而且读取的数据立刻被保存.
 (2)mutable    被mutable修饰的变量可以在常成员函数中被修改
 (3)const_cast 可以去除变量的volatitle属性和const属性
@@ -66,7 +66,7 @@
                     
                     Base *P = new Base;  
                     Derived *pd3 = static_cast<Derived *>(P);      //编译没有问题，运行可能有问题
-                    Derived *pd4 = dynamic_cast<Derived *>(P);     //运行时，pd4=NULL
+                    Derived *pd4 = dynamic_cast<Derived *>(P);     //运行时，pd4=NULL，可以防止可能不合理的从基类指针强制转换为派生类指针
 (28)虚函数表与虚指针: 虚函数表属于类，虚指针属于对象。对于单继承来说，一个含有虚函数的类只有一张虚函数表，对于多继承来说，会有多个虚函数表，对应对象有多个虚指针 
 (29)多重继承，虚继承的内存布局： http://blog.chinaunix.net/uid-16723279-id-3568748.html    http://www.cnblogs.com/demian/p/6538301.html   
 (30)C++并发指南  http://www.cnblogs.com/haippy/p/3284540.html
