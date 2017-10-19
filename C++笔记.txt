@@ -30,7 +30,7 @@
             int B::i = 2; 
 (13)为什么基类的析构函数是虚函数？ 在实现多态时，当用基类操作派生类，在析构时防止只析构基类而不析构派生类的状况发生。
 (14)为什么复制构造函数的形参必须是一个引用？ 如果你给它定义的参数，是一个类型，而不是一个类型的引用，会导致无穷递归。 
-(15)如何需要"深拷贝",必须显式的定义复制构造函数。
+(15)如果需要"深拷贝",必须显式的定义复制构造函数。
 (16)new & operator new & placement new:
     new: 运算符， 申请内存和初始化对象
     operator new: 函数，类似于C语言的malloc，用于分配内存空间，但不会初始化空间，可以被重载
@@ -58,7 +58,7 @@
 (23)进程通信和线程通信 http://blog.csdn.net/fly_yr/article/details/50970198   
 (24)仿函数(函数对象): 重载了操作符()的类，其对象被称为函数对象，因为它们是行为类似函数的对象，所以称之为仿函数。
 (25)lambda表达式  http://blog.csdn.net/fjzpdkf/article/details/50249287     
-(26)RTTI    运行时类型信息(Run-Time Type Information)， danamic_cast：
+(26)RTTI    运行时类型信息(Run-Time Type Information)， dynamic_cast：
 (27)static_cast与dynamic_cast 
                     Base *P = new Derived();  
                     Derived *pd1 = static_cast<Derived *>(P);      //编译和运行没有问题
@@ -70,8 +70,13 @@
 (28)虚函数表与虚指针: 虚函数表属于类，虚指针属于对象。对于单继承来说，一个含有虚函数的类只有一张虚函数表，对于多继承来说，会有多个虚函数表，对应对象有多个虚指针 
 (29)多重继承，虚继承的内存布局： http://blog.chinaunix.net/uid-16723279-id-3568748.html    http://www.cnblogs.com/demian/p/6538301.html   
 (30)C++并发指南  http://www.cnblogs.com/haippy/p/3284540.html
-(31)进程之间通信和线程之间通信  http://blog.csdn.net/fly_yr/article/details/50970198 线程通信还包括消息，在操作系统中进行通信的是进程而不是程序。         
-              
-              
-              
+(31)智能指针：
+    出现的背景：一般情况下new会对应delete，但是由于程序员忘记写delete或者在delete语句之前程序出现了异常跳转，导致没有执行delete语句，从而导致内存泄漏
+    auto_ptr的问题：
+    auto_ptr< string> ps (new string ("I reigned lonely as a cloud.”）;
+    auto_ptr<string> vocation; 
+    vocaticn = ps;   //当ps和vocation过期时，会释放两次内存导致错误
+    
+(32) sizeof("hello") = 6,  strlen("hello") = 5;
+
               

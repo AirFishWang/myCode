@@ -1,0 +1,124 @@
+(1) 窗口 <= 视口 <= 屏幕
+(2) 直线算法
+    数值微分法(DDA算法)：最大位移方向每次走一步，假设随x方向增长，x = x + 1, y = y + k，将(int)(y+k)作为绘制时的y值
+    缺点：有浮点取整运算，不利于硬件实现
+    void CCgWCLineDemoView::DDA(int x1, int y1, int x2, int y2, CDC *pDC)
+    {
+        int i, step;
+        float x, y, dx, dy;
+        step = abs(x2 - x1) > abs(y2 - y1)? abs(x2 - x1) : abs(y2 - y1);
+        dx = (float)(x2 - x1) / step;
+        dy = (float)(y2 - y1) / step;
+        x = x1 + 0.5;
+        y = y1 + 0.5;
+        for(i =0; i <= step; i++)
+        {
+            pDC->SetPixel(m_width/2 + (int)x, m_height/2 - (int)y, RGB(225, 0, 0));   //设备坐标
+            x += dx;
+            y += dy;
+        }
+    }
+    中点划线法：关键在于构造判别式，F(x,y) = ax +by + c, 构造判别式 2F(x, y)
+    //中点画线法
+    void line1(int x1,int y1,int x2,int y2){
+
+         int x,y,d0,d1,d2,a,b;
+         y=y1;             
+         a=y1-y2;          //直线方程中的a的算法
+         b=x2-x1;          //直线方程中的b的算法
+         d0=2*a+b;         //增量初始值
+         d1=2*a;           //当>=0时的增量
+         d2=2*(a+b);       //当<0时的增量
+         for(x=x1;x<=x2;x++){
+                putpixel(x,y,GREEN);   //打亮
+            if(d0<0){
+                y++;            
+                d0+=d2;
+            }else{
+
+            d0+=d1;
+            }
+
+         }
+    }
+    Bresenham画线算法: 比较从理想直线到位于直线上方的像素的距离d1和相邻的位于直线下方的像素的距离d2
+                        根据距离误差项的符号确定与理想直线最近的象
+    e = dy/dx, 当e>=0.5时，取上边的像素。e1=2dy/dx-1
+    由于有浮点计算，令E=(e-0.5)*2dx, 则对应的E2=E+2dy-dx
+    void CCgWCLineDemoView::BresenhamLine(int x1, int y1, int x2, int y2, CDC *pDC)
+    {
+        int x,y,dx,dy,sign1,sign2,temp,interchange,e,i;
+        x = x1;
+        y = y1;
+        sign1 = x2 > x1 ? 1 : -1;
+        sign2 = y2 > y1 ? 1 : -1;
+        dx = abs(x2 - x1);
+        dy = abs(y2 - y1);
+        if(dy > dx)
+        {
+            temp = dx;
+            dx = dy;
+            dy = temp;
+            interchange = 1;      //斜率绝对值大于1
+        }
+        else interchange = 0;      //斜率绝对值小于1
+
+        e = 2 * dy - dx;      //初值
+        
+        for(i = 0; i < dx; i++)
+        {
+            pDC->SetPixel(m_width/2 + (int)x, m_height/2 - (int)y, RGB(0, 0, 255));
+            if(e >= 0)        //误差e的增量计算
+            {
+                if(interchange)  
+                    x += sign1;
+                else 
+                    y += sign2;
+                e = e - 2 * dx; 
+            }
+            if(interchange)
+                y += sign2;
+            else 
+                x += sign1;
+            e = e + 2 * dy;
+        }
+    }
+(3) 点在多边形内的包含性检验
+    检验夹角之和: 若夹角和为0，则点p在多边形外, 若夹角和为360°，则点p在多边形内
+    射线法检验交点数
+    
+(4) 活性边扫描线填充算法：
+    解决顶点计数问题: 将图形所有顶点的纵坐标上移0.5个单位，或者使扫描线的纵坐标上移0.5个单位，使顶点不落在扫描线上。
+
+(5) 种子填充
+    递归算法会存在函数递归栈上限问题
+    需要采用栈结构，不能直接使用递归，仍存在的问题：栈过大，点多次入栈，折中方法：扫描线填充算法
+    
+(6)绕z轴逆时针旋转a度，
+
+(7)隐藏面的剔除：面的法相，视线向量(由物体指向视点)
+(8)冯氏光照模型(Phong) 环境光模型， 漫反射光模型， 镜面光照
+    环境光模型：与环境光，环境光的强度，物体的本身颜色和物体的反射属性有关
+    {
+        float ambientStrength = 0.1f;                  
+        vec3 ambient = ambientStrength * lightColor;
+        vec3 result = ambient * objectColor;
+        color = vec4(result, 1.0f);
+    }
+    漫反射模型：与点光源强度，入射角，物体表面反射系数有关，与观察者位置无关。
+    镜面光照：与观察者位置也相关。
+              我们通过反射法向量周围光的方向计算反射向量。然后我们计算反射向量和视线方向的角度，如果之间的角度越小，那么镜面光的作用就会越大。
+              它的作用效果就是，当我们去看光被物体所反射的那个方向的时候，我们会看到一个高光。
+    
+    冯氏光照模型的缺点：
+        显示出的物体像塑料，无质感变化
+        没有考虑物体间相互反射光
+        镜面反射颜色与材质无关
+        镜面反射大于入射角失真现象
+        
+    多个光源之间是累加。依据最终颜色rgb分量的比例来决定最终的颜色，(2, 1, 1)应该等效于(1, 0.5, 0.5)
+(9)光线追踪算法：http://blog.csdn.net/zkl99999/article/details/42102923
+(10)可编程管线：定点着色器(模式变换，变为其次坐标空间)，图元装配，裁剪，光栅化形成片元，插值，片段着色器(纹理采样，光照计算等)，片元测试(深度测试，模板测试，面剔除)
+(11)面剔除，考虑面的法向与视线向量的夹角(视线向量由点指向视点)
+(12)编码裁剪算法：可以迅速的判断是否有交点，http://www.cnblogs.com/JDomain/p/6555807.html
+(13)计算多边形的凸包：http://blog.csdn.net/bone_ace/article/details/46239187
