@@ -78,6 +78,6 @@
     auto_ptr<string> vocation; 
     vocaticn = ps;   //当ps和vocation过期时，会释放两次内存导致错误
     
-(32) sizeof("hello") = 6,  strlen("hello") = 5;
+(32) sizeof("hello") = 6,  strlen("hello") = 5; strlen只能用于字符串。
 
               
